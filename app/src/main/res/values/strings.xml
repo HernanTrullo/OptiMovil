@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">OptiMovil</string>
+    <string name="lb_cliente">Customer</string>
+    <string name="lb_accesorios">Accessories</string>
+    <string name="lb_lentes">Glases</string>
+    <string name="lb_colecciones">Collection</string>
+    <string name="lb_moturas_para_ninos">Frame to children</string>
 </resources>

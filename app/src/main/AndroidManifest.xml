@@ -10,7 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OptiMovil">
         <activity
+            android:name=".Actividades.VentanaProductosMeGusta"
+            android:exported="false" />
+        <activity
+            android:name=".Actividades.VentanaClientes"
+            android:exported="false" />
+        <activity
+            android:name=".Actividades.VentanaInformacionProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Actividades.VentanaProducto"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".Actividades.VentanaPrincipal"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

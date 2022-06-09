@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OptiMovil</string>
+    <string name="lb_cliente">Cliente</string>
+    <string name="lb_lentes">Lentes</string>
+    <string name="lb_accesorios">Accesorios</string>
+    <string name="lb_colecciones">Coleeciones</string>
+    <string name="lb_moturas_para_ninos">Monturas para niños</string>
+</resources>
