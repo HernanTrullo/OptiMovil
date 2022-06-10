@@ -3,17 +3,20 @@ package edu.unicauca.optimovil.Actividades;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import edu.unicauca.optimovil.R;
 
 public class VentanaPrincipal extends AppCompatActivity {
     public static final String EXTRA_MENSAJE = "edu.unicauca.optimovil.PRODUCTO";
 
-    private ImageButton btiCliente, btiAccesorios, btiNinos, btiColecciones;
-    
+    private ImageButton  btiCliente,btiAccesorios, btiNinos, btiColecciones;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
