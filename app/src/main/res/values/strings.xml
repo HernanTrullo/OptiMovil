@@ -5,4 +5,5 @@
     <string name="lb_lentes">Glases</string>
     <string name="lb_colecciones">Collection</string>
     <string name="lb_moturas_para_ninos">Frame to children</string>
+    <string name="imgicono">Imagen del icono</string>
 </resources>
