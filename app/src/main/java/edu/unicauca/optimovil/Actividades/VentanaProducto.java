@@ -20,8 +20,8 @@ public class VentanaProducto extends AppCompatActivity {
         String message = intent.getStringExtra(VentanaPrincipal.EXTRA_MENSAJE);
 
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.lb_vp_titulo);
-        textView.setText(message);
+        TextView textViewCliente = findViewById(R.id.lb_vp_titulo);
+        textViewCliente.setText("CLientes");
     }
 
 }
