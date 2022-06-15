@@ -50,6 +50,10 @@ public class VentanaProducto extends AppCompatActivity {
         listaProductos.add(new Producto("Montura amarilla","Esta montura es nueva",R.drawable.imagen_prueba));
         listaProductos.add(new Producto("Montura verde","Esta montura es de vieja colección",R.drawable.imagen_prueba));
         listaProductos.add(new Producto("Montura plateada","Esta montura es nueva",R.drawable.imagen_prueba));
+
+        TextView textViewCliente = findViewById(R.id.lb_vp_titulo);
+        textViewCliente.setText("CLientes");
+
     }
 
 }
