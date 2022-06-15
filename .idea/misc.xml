@@ -12,9 +12,11 @@
         <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_clientes.xml" value="0.33" />
         <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_informacion_productos.xml" value="0.209375" />
         <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_producto.xml" value="0.209375" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_productos_megusta.xml" value="0.209375" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
