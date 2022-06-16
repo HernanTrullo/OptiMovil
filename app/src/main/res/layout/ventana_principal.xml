@@ -97,7 +97,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/lb_cliente"
-                android:src="@mipmap/ic_contacto_foreground"/>
+                android:src="@mipmap/ic_contacto_foreground" />
 
             <ImageButton
                 android:id="@+id/bti_examen"
