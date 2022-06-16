@@ -35,7 +35,7 @@ public class VentanaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VentanaPrincipal.this, VentanaClientes.class);
-                String mensaje = "Cliente";
+                String mensaje = "Carlos Perez Gallardo";
                 intent.putExtra(EXTRA_MENSAJE, mensaje);
                 startActivity(intent);
             }

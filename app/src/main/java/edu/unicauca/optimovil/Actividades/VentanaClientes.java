@@ -20,6 +20,9 @@ public class VentanaClientes extends AppCompatActivity {
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.lb_vc_titulo);
-        textView.setText(message);
+        textView.setText(R.string.lb_cliente);
+
+        TextView textViewNombreCliente = findViewById(R.id.nombre_cliente);
+        textViewNombreCliente.setText(message);
     }
 }
