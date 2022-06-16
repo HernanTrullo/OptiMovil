@@ -6,4 +6,7 @@
     <string name="lb_accesorios">Accesorios</string>
     <string name="lb_colecciones">Coleeciones</string>
     <string name="lb_moturas_para_ninos">Monturas para niños</string>
+    <string name="nombre_cliente">name_customer</string>
+    <string name="btn_informacion_cliente">Información Cliente</string>
+    <string name="btn_productos_like">Productos Me Gusta</string>
 </resources>
