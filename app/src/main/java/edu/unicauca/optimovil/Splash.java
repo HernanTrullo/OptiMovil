@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import edu.unicauca.optimovil.Actividades.VentanaPrincipal;
+
 public class Splash extends Activity {
 
     private ProgressBar spinner;
@@ -23,7 +25,7 @@ public class Splash extends Activity {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash.this, MainActivity.class);
+                Intent intent = new Intent(Splash.this, VentanaPrincipal.class);
                 startActivity(intent);
                 finish();
             }

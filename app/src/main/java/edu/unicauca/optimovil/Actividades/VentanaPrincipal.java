@@ -26,8 +26,8 @@ public class VentanaPrincipal extends AppCompatActivity {
         // Inicialización de los elementos de la actividad
         btiCliente = findViewById(R.id.bti_cliente);
         btiColecciones = findViewById(R.id.bti_colecciones);
-        btiAccesorios = findViewById(R.id.bti_accesorios);
-        btiNinos = findViewById(R.id.bti_ninos);
+        btiAccesorios = findViewById(R.id.bti_colecciones);
+        btiNinos = findViewById(R.id.bti_colecciones);
 
 
         // Se agrega el listener de cada uno de los botones
