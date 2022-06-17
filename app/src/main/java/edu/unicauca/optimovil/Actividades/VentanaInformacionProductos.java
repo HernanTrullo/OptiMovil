@@ -19,7 +19,6 @@ public class VentanaInformacionProductos extends AppCompatActivity {
         String message = intent.getStringExtra(AdaptadorProducto.EXTRA_MENSAJE);
 
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.lb_vp_titulo_producto);
-        textView.setText(message);
+
     }
 }
