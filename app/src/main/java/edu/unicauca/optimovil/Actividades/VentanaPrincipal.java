@@ -34,8 +34,6 @@ public class VentanaPrincipal extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.layout_fragment_buttons, BotonesFragment.class, null)
-                .setReorderingAllowed(true)
-                .addToBackStack("name") // name can be null
                 .commit();
 
         // Se agrega el listener de cada uno de los botones
