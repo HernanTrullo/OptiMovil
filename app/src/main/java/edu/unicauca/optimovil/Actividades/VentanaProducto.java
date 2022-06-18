@@ -48,12 +48,12 @@ public class VentanaProducto extends AppCompatActivity {
 
     private void llenarProductos()
     {
-        listaProductos.add(new Producto("Montura azúl","Esta montura es nueva",R.drawable.imagen_prueba));
-        listaProductos.add(new Producto("Montura morada","Esta montura es nueva",R.drawable.imagen_prueba));
-        listaProductos.add(new Producto("Montura roja","Esta montura es reparada",R.drawable.imagen_prueba));
-        listaProductos.add(new Producto("Montura amarilla","Esta montura es nueva",R.drawable.imagen_prueba));
-        listaProductos.add(new Producto("Montura verde","Esta montura es de vieja colección",R.drawable.imagen_prueba));
-        listaProductos.add(new Producto("Montura plateada","Esta montura es nueva",R.drawable.imagen_prueba));
+        listaProductos.add(new Producto("Montura azúl","Esta montura es nueva",R.drawable.montura_azul));
+        listaProductos.add(new Producto("Montura morada","Esta montura es nueva",R.drawable.montura_morada));
+        listaProductos.add(new Producto("Montura roja","Esta montura es reparada",R.drawable.montura_roja));
+        listaProductos.add(new Producto("Montura amarilla","Esta montura es nueva",R.drawable.montura_amarilla));
+        listaProductos.add(new Producto("Montura verde","Esta montura es de vieja colección",R.drawable.montura_verde));
+        listaProductos.add(new Producto("Montura plateada","Esta montura es nueva",R.drawable.montura_plateada));
 
 
     }

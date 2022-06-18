@@ -2,11 +2,13 @@ package edu.unicauca.optimovil.Actividades.Clases;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +24,6 @@ import edu.unicauca.optimovil.R;
 
 public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.ViewHolderProductos> {
 
-    public static final String EXTRA_MENSAJE = "edu.unicauca.optimovil.PRODUCTO.INFORMACION";
     ArrayList<Producto> listaProductos;
     Context mContext;
     public AdaptadorProducto(ArrayList<Producto> listaProductos, Context context) {
@@ -42,13 +43,13 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
         holder.tvNombre.setText(listaProductos.get(position).getNombre());
         holder.tvDescripcion.setText(listaProductos.get(position).getDescripcion());
         holder.ivFoto.setImageResource(listaProductos.get(position).getFoto());
-        holder.tvNombre.setOnClickListener(new View.OnClickListener() {
+        int fotoProducto = listaProductos.get(position).getFoto();
+        holder.lloProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Pasa el contexto en el primer parametro
                 Intent intent = new Intent(holder.itemView.getContext(),VentanaInformacionProductos.class);
-                String mensaje = "Información producto";
-                intent.putExtra(EXTRA_MENSAJE, mensaje);
+                intent.putExtra("Imagen", fotoProducto);
                 mContext.startActivity(intent);
             }
         });
@@ -63,11 +64,13 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
         TextView tvNombre;
         TextView tvDescripcion;
         ImageView ivFoto;
+        LinearLayout lloProducto;
         public ViewHolderProductos(@NonNull View itemView) {
             super(itemView);
             tvNombre = (TextView) itemView.findViewById(R.id.nombreProducto);
             tvDescripcion = (TextView) itemView.findViewById(R.id.descripcionProducto);
             ivFoto = (ImageView) itemView.findViewById(R.id.fotoProducto);
+            lloProducto = (LinearLayout) itemView.findViewById(R.id.Fragmento_Producto);
         }
     }
 }
