@@ -1,6 +1,7 @@
 package edu.unicauca.optimovil.Actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import edu.unicauca.optimovil.Actividades.Clases.AdaptadorProducto;
 import edu.unicauca.optimovil.Actividades.Clases.Producto;
 import edu.unicauca.optimovil.R;
+import edu.unicauca.optimovil.fragments.BotonesFragment;
 
 public class VentanaProducto extends AppCompatActivity {
 
@@ -31,14 +33,16 @@ public class VentanaProducto extends AppCompatActivity {
         String message = intent.getStringExtra(VentanaPrincipal.EXTRA_MENSAJE);
 
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.lb_vp_titulo);
-        textView.setText(message);
         listaProductos = new ArrayList<>();
         recyclerProductos = findViewById(R.id.RecyclerViewProductos);
         recyclerProductos.setLayoutManager(new LinearLayoutManager(this));
         llenarProductos();
         AdaptadorProducto adapter = new AdaptadorProducto(listaProductos,VentanaProducto.this);
         recyclerProductos.setAdapter(adapter);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.layout_fragment_btn_prod, BotonesFragment.class, null)
+                .commit();
     }
 
 
@@ -51,8 +55,6 @@ public class VentanaProducto extends AppCompatActivity {
         listaProductos.add(new Producto("Montura verde","Esta montura es de vieja colección",R.drawable.imagen_prueba));
         listaProductos.add(new Producto("Montura plateada","Esta montura es nueva",R.drawable.imagen_prueba));
 
-        TextView textViewCliente = findViewById(R.id.lb_vp_titulo);
-        textViewCliente.setText("CLientes");
 
     }
 

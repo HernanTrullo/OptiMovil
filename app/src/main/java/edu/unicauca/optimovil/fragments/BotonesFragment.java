@@ -14,7 +14,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import edu.unicauca.optimovil.Actividades.VentanaClientes;
+import edu.unicauca.optimovil.Actividades.VentanaInformacionProductos;
 import edu.unicauca.optimovil.Actividades.VentanaPrincipal;
+import edu.unicauca.optimovil.Actividades.VentanaProducto;
 import edu.unicauca.optimovil.Actividades.VentanaProductosMeGusta;
 import edu.unicauca.optimovil.R;
 
@@ -110,6 +112,22 @@ public class BotonesFragment extends Fragment implements View.OnClickListener {
             llFilter.setVisibility(View.GONE);
             llSettings.setVisibility(View.VISIBLE);
             llShare.setVisibility(View.GONE);
+        }
+        if (VentanaProducto.class.equals(view.getContext().getClass())) {
+            llSearch.setVisibility(View.VISIBLE);
+            llHome.setVisibility(View.GONE);
+            llLikes.setVisibility(View.VISIBLE);
+            llFilter.setVisibility(View.VISIBLE);
+            llSettings.setVisibility(View.VISIBLE);
+            llShare.setVisibility(View.GONE);
+        }
+        if (VentanaInformacionProductos.class.equals(view.getContext().getClass())) {
+            llSearch.setVisibility(View.GONE);
+            llHome.setVisibility(View.VISIBLE);
+            llLikes.setVisibility(View.VISIBLE);
+            llFilter.setVisibility(View.GONE);
+            llSettings.setVisibility(View.VISIBLE);
+            llShare.setVisibility(View.VISIBLE);
         }
         Log.d("cargarBontones: ", view.getContext().toString() );
 

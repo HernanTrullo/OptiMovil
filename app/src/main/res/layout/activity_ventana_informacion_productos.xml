@@ -6,23 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Actividades.VentanaInformacionProductos">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:id="@+id/layout_fragment_btn"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/NombreProductoInfo"
@@ -37,8 +35,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
             android:layout_gravity="center"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,14 +46,12 @@
 
                 <ImageView
                     android:id="@+id/imagen_del_producto"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_width="144dp"
+                    android:layout_height="144dp"
+                    android:layout_marginStart="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ImageContrastCheck"
-                    tools:srcCompat="@drawable/ic_logo" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -66,6 +62,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imagen_del_producto"
                     app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/Precio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:text="$$$"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/Me_Gusta"
@@ -92,21 +98,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="Este producto presenta"
             android:textSize="20dp" />
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/btn_perfil_cliente"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_btn_account_circle_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
