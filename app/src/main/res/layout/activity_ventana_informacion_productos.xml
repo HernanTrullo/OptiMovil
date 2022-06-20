@@ -79,14 +79,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Me gusta" />
+                        android:text="@string/btn_me_gusta" />
 
                     <Button
                         android:id="@+id/Comprar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Añadir a carrito" />
+                        android:text="@string/btn_comprar" />
                 </LinearLayout>
 
 

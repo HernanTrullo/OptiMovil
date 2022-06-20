@@ -129,6 +129,14 @@ public class BotonesFragment extends Fragment implements View.OnClickListener {
             llSettings.setVisibility(View.VISIBLE);
             llShare.setVisibility(View.VISIBLE);
         }
+        if (VentanaProductosMeGusta.class.equals(view.getContext().getClass())) {
+            llSearch.setVisibility(View.GONE);
+            llHome.setVisibility(View.VISIBLE);
+            llLikes.setVisibility(View.GONE);
+            llFilter.setVisibility(View.GONE);
+            llSettings.setVisibility(View.VISIBLE);
+            llShare.setVisibility(View.VISIBLE);
+        }
         Log.d("cargarBontones: ", view.getContext().toString() );
 
     }

@@ -11,4 +11,6 @@
     <string name="btn_productos_like">Like Products</string>
     <string name="btn_informacion_cliente">Customer Information</string>
     <string name="nombre_cliente">Customer\'s name</string>
+    <string name="btn_me_gusta">Like</string>
+    <string name="btn_comprar">Add to car</string>
 </resources>

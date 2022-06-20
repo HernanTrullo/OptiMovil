@@ -1,35 +1,105 @@
 package edu.unicauca.optimovil.Actividades;
 
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
 
-import edu.unicauca.optimovil.Actividades.Clases.AdaptadorProducto;
+import edu.unicauca.optimovil.ListaMeGustaDB.ListaMeGusta;
+import edu.unicauca.optimovil.ListaMeGustaDB.ListaMeGustaDataBaseAccesor;
 import edu.unicauca.optimovil.R;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
 
 public class VentanaInformacionProductos extends AppCompatActivity {
 
     ImageView iv_Producto;
+    Button btn_Me_gusta;
+    List<Integer> ListaProductosMeGusta = new ArrayList<Integer>();
+    ArrayList<ListaMeGusta> ListaProductosMeGustadb = new ArrayList<ListaMeGusta>();
+    int resId;
+    String resIDStr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ventana_informacion_productos);
         Bundle bundle = getIntent().getExtras();
         iv_Producto = findViewById(R.id.imagen_del_producto);
+        btn_Me_gusta = findViewById(R.id.Me_Gusta);
         if (bundle != null) {
-            int resId = bundle.getInt("Imagen");
+            resId = bundle.getInt("Imagen");
             iv_Producto.setImageResource(resId);
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.layout_fragment_btn, BotonesFragment.class, null)
                 .commit();
+
+        ListaProductosMeGustadb = new ArrayList<ListaMeGusta>();
+        ListaProductosMeGusta = (ArrayList<Integer>) getLastCustomNonConfigurationInstance();
+        if (ListaProductosMeGusta == null)
+            ListaProductosMeGusta = new ArrayList<Integer>();
+        getTasks();
+
+        btn_Me_gusta.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                resIDStr = String.valueOf(resId);
+                ListaMeGusta task = new ListaMeGusta(resIDStr);
+                saveTask(task);
+                Log.i("Tag", "CantProductosMG:"+task);
+            }
+        });
+    }
+    private void getTasks() {
+        class GetTasks extends AsyncTask<Void, Void, List<ListaMeGusta>> {
+
+            @Override
+            protected List<ListaMeGusta> doInBackground(Void... voids) {
+                List<ListaMeGusta> taskList = ListaMeGustaDataBaseAccesor
+                        .getInstance(getApplication()).listaMeGustaDAO().loadAllItems();
+                return taskList;
+            }
+
+            @Override
+            protected void onPostExecute(List<ListaMeGusta> tasks) {
+                super.onPostExecute(tasks);
+                ListaProductosMeGusta.clear();
+                ListaProductosMeGustadb.clear();
+                for (int i = 0; i < tasks.size(); i++) {
+                    ListaProductosMeGusta.add(Integer.parseInt(tasks.get(i).getTask()));
+                    ListaProductosMeGustadb.add(tasks.get(i));
+                }
+            }
+        }
+        GetTasks getTasks = new GetTasks();
+        getTasks.execute();
+
+    }
+    private void saveTask(final ListaMeGusta task) {
+        class SaveTask extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                //adding to database
+                ListaMeGustaDataBaseAccesor.getInstance(getApplication()).listaMeGustaDAO().insertListaProducto(task);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                getTasks();
+            }
+        }
+
+        SaveTask saveTask = new SaveTask();
+        saveTask.execute();
     }
 }

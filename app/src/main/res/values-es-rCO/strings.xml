@@ -9,4 +9,6 @@
     <string name="nombre_cliente">name_customer</string>
     <string name="btn_informacion_cliente">Información Cliente</string>
     <string name="btn_productos_like">Productos Me Gusta</string>
+    <string name="btn_me_gusta">Me gusta</string>
+    <string name="btn_comprar">Añadir al carro</string>
 </resources>
