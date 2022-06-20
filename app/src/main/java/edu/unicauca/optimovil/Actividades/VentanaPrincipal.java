@@ -34,8 +34,8 @@ public class VentanaPrincipal extends AppCompatActivity {
         // Inicialización de los elementos de la actividad
         btiCliente = findViewById(R.id.bti_cliente);
         btiColecciones = findViewById(R.id.bti_colecciones);
-        btiAccesorios = findViewById(R.id.bti_colecciones);
-        btiNinos = findViewById(R.id.bti_colecciones);
+        btiAccesorios = findViewById(R.id.bti_kids);
+        btiNinos = findViewById(R.id.bti_linea_hombre);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
