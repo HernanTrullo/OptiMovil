@@ -12,4 +12,6 @@
     <string name="txt_hinst_usuario">E-mail</string>
     <string name="txt_hinst_password">Password</string>
     <string name="nombre_cliente">name_customer</string>
+    <string name="txt_mensaje_error_logeo">Error! password or user incorrect</string>
+
 </resources>

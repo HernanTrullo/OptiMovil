@@ -12,4 +12,5 @@
     <string name="txt_hinst_usuario">Correo</string>
     <string name="txt_hinst_password">Contraeña</string>
     <string name="btn_logeo">Ingresar</string>
+    <string name="txt_mensaje_error_logeo">Error! usuario o contraseña incorrectos</string>
 </resources>
