@@ -30,12 +30,14 @@ public class Logeo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (esValidaUserPass(txtUser.getText().toString(), txtPass.getText().toString())){
+
                     Intent intent = new Intent(Logeo.this, VentanaClientes.class);
+
                     startActivity(intent);
+                    destruirActivity();
                 }
                 else{
                     Toast.makeText( Logeo.this, R.string.txt_mensaje_error_logeo, Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
@@ -52,6 +54,8 @@ public class Logeo extends AppCompatActivity {
         }
 
     }
-
+    private void destruirActivity(){
+        finish();
+    }
 
 }

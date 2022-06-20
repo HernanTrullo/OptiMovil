@@ -26,6 +26,7 @@ public class Splash extends Activity {
             @Override
             public void run() {
                 Intent intent = new Intent(Splash.this, VentanaPrincipal.class);
+                intent.putExtra("Cliente", "1");
                 startActivity(intent);
                 finish();
             }
