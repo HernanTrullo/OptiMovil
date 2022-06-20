@@ -1,6 +1,7 @@
 package edu.unicauca.optimovil.Actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.media.Image;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 
 import edu.unicauca.optimovil.Logeo;
 import edu.unicauca.optimovil.R;
+import edu.unicauca.optimovil.fragments.BotonesFragment;
 
 public class VentanaPrincipal extends AppCompatActivity {
     public static final String EXTRA_MENSAJE = "edu.unicauca.optimovil.PRODUCTO";
@@ -27,9 +29,15 @@ public class VentanaPrincipal extends AppCompatActivity {
         // Inicialización de los elementos de la actividad
         btiCliente = findViewById(R.id.bti_cliente);
         btiColecciones = findViewById(R.id.bti_colecciones);
-        btiAccesorios = findViewById(R.id.bti_accesorios);
-        btiNinos = findViewById(R.id.bti_ninos);
+        btiAccesorios = findViewById(R.id.bti_colecciones);
+        btiNinos = findViewById(R.id.bti_colecciones);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.layout_fragment_buttons, BotonesFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("name") // name can be null
+                .commit();
 
         // Se agrega el listener de cada uno de los botones
         btiCliente.setOnClickListener(new View.OnClickListener() {

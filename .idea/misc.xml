@@ -3,10 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_producto.xml" value="0.22" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/drawable/contact.xml" value="0.191" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/drawable/ic_circle_white.xml" value="0.191" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/drawable/info_cliente_background.xml" value="0.1765" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/drawable/producto_megusta_foreground.xml" value="0.1855" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_logeo.xml" value="0.25" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_main.xml" value="0.209375" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_splash.xml" value="0.209375" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_clientes.xml" value="0.33" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_informacion_productos.xml" value="0.209375" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_producto.xml" value="0.209375" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/activity_ventana_productos_megusta.xml" value="0.209375" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/fragment_botones.xml" value="0.1625" />
+        <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/lista_productos.xml" value="0.209375" />
         <entry key="..\:/Users/trull/Desktop/OptiMovil/app/src/main/res/layout/ventana_principal.xml" value="0.33" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>

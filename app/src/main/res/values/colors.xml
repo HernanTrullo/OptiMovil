@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="back_ground_panels">#BBDEFE</color>
     <color name="letters_colors">#001A5F</color>
+
+    <color name="blue_color">#0f5ea1</color>
+    <color name="green_color">#7dc74d</color>
+
 </resources>
