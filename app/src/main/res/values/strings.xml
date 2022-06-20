@@ -8,4 +8,8 @@
     <string name="imgicono">Imagen del icono</string>
     <string name="btn_productos_like">Like Products</string>
     <string name="btn_informacion_cliente">Customer Information</string>
+    <string name="btn_logeo">Login</string>
+    <string name="txt_hinst_usuario">E-mail</string>
+    <string name="txt_hinst_password">Password</string>
+    <string name="nombre_cliente">name_customer</string>
 </resources>

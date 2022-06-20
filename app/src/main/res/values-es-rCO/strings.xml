@@ -9,4 +9,7 @@
     <string name="nombre_cliente">name_customer</string>
     <string name="btn_informacion_cliente">Información Cliente</string>
     <string name="btn_productos_like">Productos Me Gusta</string>
+    <string name="txt_hinst_usuario">Correo</string>
+    <string name="txt_hinst_password">Contraeña</string>
+    <string name="btn_logeo">Ingresar</string>
 </resources>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import edu.unicauca.optimovil.Logeo;
 import edu.unicauca.optimovil.R;
 
 public class VentanaPrincipal extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class VentanaPrincipal extends AppCompatActivity {
         btiCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VentanaPrincipal.this, VentanaClientes.class);
+                Intent intent = new Intent(VentanaPrincipal.this, Logeo.class);
                 String mensaje = "Carlos Perez Gallardo";
                 intent.putExtra(EXTRA_MENSAJE, mensaje);
                 startActivity(intent);
