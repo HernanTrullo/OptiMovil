@@ -26,4 +26,7 @@ public interface ListaMeGustaDAO {
     @Query("SELECT * FROM ListaMeGusta ORDER BY timestamp DESC")
     public List<ListaMeGusta> loadAllItems();
 
+    /*@Query("SELECT id FROM ListaMeGusta ORDER BY timestamp DESC")
+    public ListaMeGusta load();*/
+
 }

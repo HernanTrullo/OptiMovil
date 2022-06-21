@@ -22,7 +22,7 @@ public class VentanaInformacionProductos extends AppCompatActivity {
 
     ImageView iv_Producto;
     Button btn_Me_gusta;
-    List<Integer> ListaProductosMeGusta = new ArrayList<Integer>();
+    ArrayList<String> ListaProductosMeGusta = new ArrayList<String>();
     ArrayList<ListaMeGusta> ListaProductosMeGustadb = new ArrayList<ListaMeGusta>();
     int resId;
     String resIDStr;
@@ -43,15 +43,18 @@ public class VentanaInformacionProductos extends AppCompatActivity {
                 .commit();
 
         ListaProductosMeGustadb = new ArrayList<ListaMeGusta>();
-        ListaProductosMeGusta = (ArrayList<Integer>) getLastCustomNonConfigurationInstance();
+        ListaProductosMeGusta = (ArrayList<String>) getLastCustomNonConfigurationInstance();
         if (ListaProductosMeGusta == null)
-            ListaProductosMeGusta = new ArrayList<Integer>();
+            ListaProductosMeGusta = new ArrayList<String>();
         getTasks();
 
         btn_Me_gusta.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 resIDStr = String.valueOf(resId);
                 ListaMeGusta task = new ListaMeGusta(resIDStr);
+                /*for (int i = 0; i < ListaProductosMeGusta.size(); i++) {
+
+                }*/
                 saveTask(task);
                 Log.i("Tag", "CantProductosMG:"+task);
             }
@@ -73,7 +76,7 @@ public class VentanaInformacionProductos extends AppCompatActivity {
                 ListaProductosMeGusta.clear();
                 ListaProductosMeGustadb.clear();
                 for (int i = 0; i < tasks.size(); i++) {
-                    ListaProductosMeGusta.add(Integer.parseInt(tasks.get(i).getTask()));
+                    ListaProductosMeGusta.add(tasks.get(i).getTask());
                     ListaProductosMeGustadb.add(tasks.get(i));
                 }
             }
