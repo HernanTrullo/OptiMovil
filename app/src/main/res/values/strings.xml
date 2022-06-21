@@ -13,4 +13,13 @@
     <string name="nombre_cliente">Customer\'s name</string>
     <string name="btn_me_gusta">Like</string>
     <string name="btn_comprar">Add to car</string>
+    <string name="lema_app">Life for your eyes!</string>
+    <string name="lb_btn_clientes">Customer</string>
+    <string name="lb_btn_nino">Kids</string>
+    <string name="lb_btn_mujeres">Women</string>
+    <string name="lb_btn_hombres">Men</string>
+    <string name="lb_btn_colecciones">Colections</string>
+    <string name="lb_btn_ubicacion">Location</string>
+    <string name="lb_btn_citas">"Optometry "</string>
+    <string name="lb_btn_wapp">Whatsapp</string>
 </resources>
