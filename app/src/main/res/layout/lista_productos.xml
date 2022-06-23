@@ -19,12 +19,11 @@
 
             <ImageView
                 android:id="@+id/fotoProducto"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 tools:ignore="ImageContrastCheck"
                 tools:srcCompat="@tools:sample/avatars" />
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -38,6 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_gravity="center"
                     android:text="Nombre del producto"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -47,6 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
                     android:text="Descripción"
                     android:textSize="15dp" />
             </LinearLayout>
