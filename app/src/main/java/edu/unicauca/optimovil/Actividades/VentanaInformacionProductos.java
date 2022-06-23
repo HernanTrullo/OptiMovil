@@ -42,25 +42,25 @@ public class VentanaInformacionProductos extends AppCompatActivity {
                 .replace(R.id.layout_fragment_btn, BotonesFragment.class, null)
                 .commit();
 
-        ListaProductosMeGustadb = new ArrayList<ListaMeGusta>();
-        ListaProductosMeGusta = (ArrayList<String>) getLastCustomNonConfigurationInstance();
-        if (ListaProductosMeGusta == null)
-            ListaProductosMeGusta = new ArrayList<String>();
-        getTasks();
+        //ListaProductosMeGustadb = new ArrayList<ListaMeGusta>();
+        //ListaProductosMeGusta = (ArrayList<String>) getLastCustomNonConfigurationInstance();
+        /*if (ListaProductosMeGusta == null)
+            ListaProductosMeGusta = new ArrayList<String>();*/
+        List<String> ListaLocal = getTasks();
+        Log.i("Tag", "CantProductosMG:"+ListaLocal);
 
         btn_Me_gusta.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 resIDStr = String.valueOf(resId);
                 ListaMeGusta task = new ListaMeGusta(resIDStr);
                 /*for (int i = 0; i < ListaProductosMeGusta.size(); i++) {
-
                 }*/
                 saveTask(task);
-                Log.i("Tag", "CantProductosMG:"+task);
+                //Log.i("Tag", "CantProductosMG:"+task);
             }
         });
     }
-    private void getTasks() {
+    private List<String>  getTasks() {
         class GetTasks extends AsyncTask<Void, Void, List<ListaMeGusta>> {
 
             @Override
@@ -78,11 +78,15 @@ public class VentanaInformacionProductos extends AppCompatActivity {
                 for (int i = 0; i < tasks.size(); i++) {
                     ListaProductosMeGusta.add(tasks.get(i).getTask());
                     ListaProductosMeGustadb.add(tasks.get(i));
+                    //System.out.println(tasks.get(i).getTask());
                 }
+                //System.out.println(ListaProductosMeGusta);
             }
         }
         GetTasks getTasks = new GetTasks();
         getTasks.execute();
+        System.out.println(ListaProductosMeGusta);
+        return ListaProductosMeGusta;
 
     }
     private void saveTask(final ListaMeGusta task) {
