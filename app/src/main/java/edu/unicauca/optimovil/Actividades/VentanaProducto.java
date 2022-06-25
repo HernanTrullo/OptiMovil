@@ -42,17 +42,20 @@ public class VentanaProducto extends AppCompatActivity {
         setContentView(R.layout.activity_ventana_producto);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(VentanaPrincipal.EXTRA_MENSAJE);
+        boolean esLogeado = intent.getBooleanExtra(VentanaPrincipal.EXTRA_MENSAJE_PRO, false);
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.lb_vp_titulo);
-        textView.setText(message);
+
+
         listaProductos = new ArrayList<>();
         recyclerProductos = findViewById(R.id.RecyclerViewProductos);
         recyclerProductos.setLayoutManager(new LinearLayoutManager(this));
-        /*llenarProductos();
+        llenarProductos();
         AdaptadorProducto adapter = new AdaptadorProducto(listaProductos,VentanaProducto.this);
-        recyclerProductos.setAdapter(adapter);*/
+        recyclerProductos.setAdapter(adapter);
+
+
 
         //loadTasks();
     }

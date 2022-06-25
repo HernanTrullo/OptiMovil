@@ -15,8 +15,12 @@ import edu.unicauca.optimovil.R;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
 
 public class VentanaPrincipal extends AppCompatActivity {
-    public static final String EXTRA_MENSAJE = "edu.unicauca.optimovil.PRODUCTO";
-    private String esLog = "";
+    public static final String EXTRA_MENSAJE_PRO = "edu.unicauca.optimovil.PRODUCTO";
+    public static final String EXTRA_MENSAJE_PRINCIP = "edu.unicauca.optimovil.VENTANAPRINCIPAL";
+    public static final String EXTRA_MENSAJE_LOG = "edu.unicauca.optimovil.LOGEO";
+    public static final String EXTRA_MENSAJE_CLIENTES = "edu.unicauca.optimovil.VENTANAPRINCIPAL";
+
+    private boolean esLog = false;
 
     private ImageButton  btiCliente,btiAccesorios, btiNinos, btiColecciones;
 
@@ -29,7 +33,7 @@ public class VentanaPrincipal extends AppCompatActivity {
         // Se capura si el usuario ya esta logeado
 
         Intent intentPrincipal = getIntent();
-        esLog = intentPrincipal.getStringExtra("Cliente");
+        esLog = intentPrincipal.getBooleanExtra(EXTRA_MENSAJE_PRINCIP, false);
 
         // Inicialización de los elementos de la actividad
         btiCliente = findViewById(R.id.bti_cliente);
@@ -49,16 +53,13 @@ public class VentanaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (esLog.equals("1")){
+                if (!esLog){
                     Intent intent = new Intent(VentanaPrincipal.this, Logeo.class);
-                    String mensaje = "Carlos Perez Gallardo";
-                    intent.putExtra(EXTRA_MENSAJE, mensaje);
                     startActivity(intent);
                 }
                 else{
                     Intent intent = new Intent(VentanaPrincipal.this, VentanaClientes.class);
-                    String mensaje = "Carlos Perez Gallardo";
-                    intent.putExtra(EXTRA_MENSAJE, mensaje);
+                    intent.putExtra(EXTRA_MENSAJE_CLIENTES, true);
                     startActivity(intent);
                 }
 
@@ -70,7 +71,7 @@ public class VentanaPrincipal extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(VentanaPrincipal.this, VentanaProducto.class);
                 String mensaje = "Niños";
-                intent.putExtra(EXTRA_MENSAJE, mensaje);
+                intent.putExtra(EXTRA_MENSAJE_PRO, mensaje);
                 startActivity(intent);
             }
         });
@@ -79,7 +80,7 @@ public class VentanaPrincipal extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(VentanaPrincipal.this, VentanaProducto.class);
                 String mensaje = "Colecciones";
-                intent.putExtra(EXTRA_MENSAJE, mensaje);
+                intent.putExtra(EXTRA_MENSAJE_PRO, mensaje);
                 startActivity(intent);
             }
         });
@@ -88,7 +89,7 @@ public class VentanaPrincipal extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(VentanaPrincipal.this, VentanaProducto.class);
                 String mensaje = "Accesorios";
-                intent.putExtra(EXTRA_MENSAJE, mensaje);
+                intent.putExtra(EXTRA_MENSAJE_PRO, mensaje);
                 startActivity(intent);
             }
         });
