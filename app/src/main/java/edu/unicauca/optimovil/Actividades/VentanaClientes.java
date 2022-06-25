@@ -40,10 +40,18 @@ public class VentanaClientes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try{
+                    Toast.makeText(VentanaClientes.this, R.string.txt_sesion_cerrada, Toast.LENGTH_SHORT).show();
+
                     DbCLienteHelper dbCLienteHelper = new DbCLienteHelper(VentanaClientes.this);
                     SQLiteDatabase db = dbCLienteHelper.getWritableDatabase();
+                    dbCLienteHelper.clienteLogout(db);
 
-                    Toast.makeText(VentanaClientes.this, R.string.txt_sesion_cerrada, Toast.LENGTH_SHORT).show();
+                    // Crear actividad para enviar a la ventana principal
+                    esLogeado = false;
+                    Intent intent2 = new Intent(VentanaClientes.this, VentanaPrincipal.class);
+                    intent2.putExtra(VentanaPrincipal.EXTRA_MENSAJE_PRINCIP, esLogeado); // Se ha deslogeado
+                    startActivity(intent2);
+
                 }catch (Exception e){
 
                 }

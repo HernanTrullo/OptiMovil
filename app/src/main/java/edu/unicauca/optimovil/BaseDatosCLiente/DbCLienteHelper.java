@@ -84,15 +84,15 @@ public class DbCLienteHelper extends SQLiteOpenHelper {
         );
         return cursor;
     }
-    public int clienteLogout(SQLiteDatabase db, String correo){
+    public int clienteLogout(SQLiteDatabase db){
         // New value for one column
         String value = "no";
         ContentValues values = new ContentValues();
         values.put(cS.LOGEADO, value);
 
         // Which row to update, based on the title
-        String selection = cS.CORREO + " = ?";
-        String[] selectionArgs = { correo };
+        String selection = cS.LOGEADO + " = ?";
+        String[] selectionArgs = { "si" };
 
         int count = db.update(
                 TABLE_CLIENTE,
