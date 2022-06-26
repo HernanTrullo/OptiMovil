@@ -9,4 +9,8 @@
     <string name="nombre_cliente">name_customer</string>
     <string name="btn_informacion_cliente">Información Cliente</string>
     <string name="btn_productos_like">Productos Me Gusta</string>
+    <string name="txt_hinst_usuario">Correo</string>
+    <string name="txt_hinst_password">Contraeña</string>
+    <string name="btn_logeo">Ingresar</string>
+    <string name="txt_mensaje_error_logeo">Error! usuario o contraseña incorrectos</string>
 </resources>

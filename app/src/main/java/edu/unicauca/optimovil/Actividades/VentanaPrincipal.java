@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import edu.unicauca.optimovil.Logeo;
 import edu.unicauca.optimovil.R;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
 
 public class VentanaPrincipal extends AppCompatActivity {
     public static final String EXTRA_MENSAJE = "edu.unicauca.optimovil.PRODUCTO";
+    private String esLog = "";
 
     private ImageButton  btiCliente,btiAccesorios, btiNinos, btiColecciones;
 
@@ -24,12 +26,16 @@ public class VentanaPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ventana_principal);
+        // Se capura si el usuario ya esta logeado
+
+        Intent intentPrincipal = getIntent();
+        esLog = intentPrincipal.getStringExtra("Cliente");
 
         // Inicialización de los elementos de la actividad
         btiCliente = findViewById(R.id.bti_cliente);
         btiColecciones = findViewById(R.id.bti_colecciones);
-        btiAccesorios = findViewById(R.id.bti_colecciones);
-        btiNinos = findViewById(R.id.bti_colecciones);
+        btiAccesorios = findViewById(R.id.bti_kids);
+        btiNinos = findViewById(R.id.bti_linea_hombre);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -40,10 +46,21 @@ public class VentanaPrincipal extends AppCompatActivity {
         btiCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VentanaPrincipal.this, VentanaClientes.class);
-                String mensaje = "Carlos Perez Gallardo";
-                intent.putExtra(EXTRA_MENSAJE, mensaje);
-                startActivity(intent);
+
+                if (esLog.equals("1")){
+                    Intent intent = new Intent(VentanaPrincipal.this, Logeo.class);
+                    String mensaje = "Carlos Perez Gallardo";
+                    intent.putExtra(EXTRA_MENSAJE, mensaje);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(VentanaPrincipal.this, VentanaClientes.class);
+                    String mensaje = "Carlos Perez Gallardo";
+                    intent.putExtra(EXTRA_MENSAJE, mensaje);
+                    startActivity(intent);
+                }
+
+
             }
         });
         btiNinos.setOnClickListener(new View.OnClickListener() {
