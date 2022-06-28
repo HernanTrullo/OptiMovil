@@ -11,7 +11,7 @@
     <string name="btn_productos_like">Like Products</string>
     <string name="btn_informacion_cliente">Customer Information</string>
     <string name="nombre_cliente">Customer\'s name</string>
-    <string name="btn_me_gusta">Like</string>
+    <string name="btn_me_gusta">Add Like</string>
     <string name="btn_comprar">Add to car</string>
     <string name="lema_app">Life for your eyes!</string>
     <string name="lb_btn_clientes">Customer</string>
@@ -22,4 +22,5 @@
     <string name="lb_btn_ubicacion">Location</string>
     <string name="lb_btn_citas">"Optometry "</string>
     <string name="lb_btn_wapp">Whatsapp</string>
+    <string name="btn_no_me_gusta">Remove like</string>
 </resources>

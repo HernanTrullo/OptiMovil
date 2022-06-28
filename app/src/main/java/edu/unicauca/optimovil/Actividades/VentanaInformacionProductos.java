@@ -1,6 +1,6 @@
 package edu.unicauca.optimovil.Actividades;
 
-import android.os.AsyncTask;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,24 +11,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
-import edu.unicauca.optimovil.ListaMeGustaDB.ListaMeGusta;
-import edu.unicauca.optimovil.ListaMeGustaDB.ListaMeGustaDataBaseAccesor;
+import edu.unicauca.optimovil.Actividades.BDMeGusta.MeGustaBDHelper;
+import edu.unicauca.optimovil.Actividades.Clases.Producto;
 import edu.unicauca.optimovil.R;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
 
-public class VentanaInformacionProductos extends AppCompatActivity {
+public class VentanaInformacionProductos extends AppCompatActivity{
 
+    MeGustaBDHelper conn;
     ImageView iv_Producto;
     Button btn_Me_gusta;
-    ArrayList<String> ListaProductosMeGusta = new ArrayList<String>();
-    ArrayList<ListaMeGusta> ListaProductosMeGustadb = new ArrayList<ListaMeGusta>();
     int resId;
     String resIDStr;
+    boolean estaEnLista;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_ventana_informacion_productos);
         Bundle bundle = getIntent().getExtras();
         iv_Producto = findViewById(R.id.imagen_del_producto);
@@ -41,28 +42,57 @@ public class VentanaInformacionProductos extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .replace(R.id.layout_fragment_btn, BotonesFragment.class, null)
                 .commit();
-
-        //ListaProductosMeGustadb = new ArrayList<ListaMeGusta>();
-        //ListaProductosMeGusta = (ArrayList<String>) getLastCustomNonConfigurationInstance();
-        /*if (ListaProductosMeGusta == null)
-            ListaProductosMeGusta = new ArrayList<String>();*/
-        List<String> ListaLocal = getTasks();
-        Log.i("Tag", "CantProductosMG:"+ListaLocal);
-
+        conn = new MeGustaBDHelper(this);
+        resIDStr = String.valueOf(resId);
+        Consultar();
         btn_Me_gusta.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                resIDStr = String.valueOf(resId);
-                ListaMeGusta task = new ListaMeGusta(resIDStr);
-                /*for (int i = 0; i < ListaProductosMeGusta.size(); i++) {
-                }*/
-                saveTask(task);
-                //Log.i("Tag", "CantProductosMG:"+task);
+                Consultar();
+                if(estaEnLista==false)
+                {
+                    conn.insertarProducto(resIDStr);
+                    btn_Me_gusta.setText(R.string.btn_no_me_gusta);
+                }
+                if(estaEnLista==true)
+                {
+                    conn.BorrarProducto(resIDStr);
+                    btn_Me_gusta.setText(R.string.btn_me_gusta);
+                }
+
             }
         });
     }
-    private List<String>  getTasks() {
-        class GetTasks extends AsyncTask<Void, Void, List<ListaMeGusta>> {
 
+    private void Consultar()
+    {
+        Cursor cursor = conn.GetProductosMeGusta();
+        ArrayList<String> Lista= new ArrayList<String>();
+        while (cursor.moveToNext())
+        {
+            Lista.add(cursor.getString(1));
+        }
+        for (int i = 0; i < Lista.size(); i++) {
+            if(Lista.get(i).equals(resIDStr))
+            {
+                estaEnLista = true;
+                btn_Me_gusta.setText(R.string.btn_no_me_gusta);
+                i = Lista.size();
+            }
+            else
+            {
+                btn_Me_gusta.setText(R.string.btn_me_gusta);
+                estaEnLista = false;
+            }
+        }
+    }
+
+    //private void getTasks() {
+     /*   class GetTasks extends AsyncTask<Void, Void, List<ListaMeGusta>> {
+        private OnTaskCompleted listener;
+
+        public GetTasks(OnTaskCompleted listener){
+            this.listener=listener;
+        }
             @Override
             protected List<ListaMeGusta> doInBackground(Void... voids) {
                 List<ListaMeGusta> taskList = ListaMeGustaDataBaseAccesor
@@ -80,15 +110,17 @@ public class VentanaInformacionProductos extends AppCompatActivity {
                     ListaProductosMeGustadb.add(tasks.get(i));
                     //System.out.println(tasks.get(i).getTask());
                 }
+                listener.response(ListaProductosMeGusta);
                 //System.out.println(ListaProductosMeGusta);
             }
         }
-        GetTasks getTasks = new GetTasks();
-        getTasks.execute();
-        System.out.println(ListaProductosMeGusta);
-        return ListaProductosMeGusta;
+        //GetTasks getTasks = new GetTasks();
+        //getTasks.execute();
+        //System.out.println(ListaProductosMeGusta);
 
-    }
+        //return ListaProductosMeGusta;
+
+    //}
     private void saveTask(final ListaMeGusta task) {
         class SaveTask extends AsyncTask<Void, Void, Void> {
 
@@ -102,11 +134,12 @@ public class VentanaInformacionProductos extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                getTasks();
+                //getTasks();
             }
         }
 
         SaveTask saveTask = new SaveTask();
         saveTask.execute();
-    }
+    }*/
+
 }

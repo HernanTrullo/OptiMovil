@@ -9,7 +9,7 @@
     <string name="nombre_cliente">name_customer</string>
     <string name="btn_informacion_cliente">Información Cliente</string>
     <string name="btn_productos_like">Productos Me Gusta</string>
-    <string name="btn_me_gusta">Me gusta</string>
+    <string name="btn_me_gusta">Añadir me gusta</string>
     <string name="btn_comprar">Añadir al carro</string>
     <string name="lema_app">¡Vida para tus ojo!</string>
     <string name="lb_btn_clientes">Cliente</string>
@@ -20,4 +20,5 @@
     <string name="lb_btn_ubicacion">Ubicación</string>
     <string name="lb_btn_citas">Optometría</string>
     <string name="lb_btn_wapp">Whatsapp</string>
+    <string name="btn_no_me_gusta">Remover me gusta</string>
 </resources>
