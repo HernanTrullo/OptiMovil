@@ -21,4 +21,5 @@
     <string name="lb_btn_citas">Optometría</string>
     <string name="lb_btn_wapp">Whatsapp</string>
     <string name="btn_no_me_gusta">Remover me gusta</string>
+    <string name="btn_no_comprar">Remover de carrito</string>
 </resources>

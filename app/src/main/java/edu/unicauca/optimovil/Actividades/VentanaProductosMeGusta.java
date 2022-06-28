@@ -2,7 +2,6 @@ package edu.unicauca.optimovil.Actividades;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import edu.unicauca.optimovil.Actividades.BDMeGusta.MeGustaBDHelper;
+import edu.unicauca.optimovil.Actividades.BD.MeGustaBDHelper;
 import edu.unicauca.optimovil.Actividades.Clases.AdaptadorProducto;
 import edu.unicauca.optimovil.Actividades.Clases.Producto;
-//import edu.unicauca.optimovil.ListaMeGustaDB.ListaMeGusta;
-//import edu.unicauca.optimovil.ListaMeGustaDB.ListaMeGustaDataBaseAccesor;
 import edu.unicauca.optimovil.R;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
 

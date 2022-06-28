@@ -2,6 +2,8 @@ package edu.unicauca.optimovil.Actividades;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -21,14 +23,21 @@ public class VentanaProducto extends AppCompatActivity {
 
     ArrayList<Producto> listaProductos;
     RecyclerView recyclerProductos;
+    ImageButton ibtn_carritoCompra;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ventana_producto);
-
+        ibtn_carritoCompra = findViewById(R.id.CarritoDeCompra);
         Intent intent = getIntent();
         String message = intent.getStringExtra("Mensaje");
-
+        ibtn_carritoCompra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(VentanaProducto.this,VentanaProductosMeGusta.class);
+                startActivity(intent1);
+            }
+        });
         // Capture the layout's TextView and set the string as its text
         listaProductos = new ArrayList<>();
         recyclerProductos = findViewById(R.id.RecyclerViewProductos);
