@@ -54,7 +54,7 @@ public class VentanaInformacionProductos extends AppCompatActivity{
         ibtn_Carrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(VentanaInformacionProductos.this,VentanaProductosMeGusta.class);
+                Intent intent1 = new Intent(VentanaInformacionProductos.this,VentanaCarrito.class);
                 startActivity(intent1);
             }
         });
