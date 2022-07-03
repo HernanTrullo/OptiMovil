@@ -36,12 +36,23 @@ public class MeGustaBDHelper extends SQLiteOpenHelper {
         contentValues.put(Campo_foto,fotoID);
         db.insert(Tabla_Me_Gusta,null,contentValues);
     }
-    public Cursor GetProductosMeGusta()
+    public Cursor GetProductoMeGusta(String fotoID)
     {
         SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {Campo_foto};
+        String selection = Campo_foto + " LIKE ?";
+        String[] selectionArgs = { fotoID};
+        Cursor cursor = db.query(Tabla_Me_Gusta,projection,selection,selectionArgs,null,null,null);
+        return cursor;
+    }
+    public Cursor GetProductosMeGusta()
+    {
+       SQLiteDatabase db = this.getReadableDatabase();
         Cursor resultado = db.rawQuery("SELECT * FROM "+Tabla_Me_Gusta,null);
         return resultado;
     }
+
     public void BorrarProductoMeGusta(String id)
     {
         SQLiteDatabase db = this.getWritableDatabase();

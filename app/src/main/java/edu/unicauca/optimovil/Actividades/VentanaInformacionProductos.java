@@ -94,46 +94,32 @@ public class VentanaInformacionProductos extends AppCompatActivity{
 
     private void ConsultarMeGusta()
     {
-        Cursor cursor = conn.GetProductosMeGusta();
-        ArrayList<String> Lista= new ArrayList<String>();
-        while (cursor.moveToNext())
+        Cursor cursor = conn.GetProductoMeGusta(resIDStr);
+        if(cursor.moveToFirst())
         {
-            Lista.add(cursor.getString(1));
+            String productoLike = cursor.getString(0);
+            estaEnLista = true;
+            btn_Me_gusta.setText(R.string.btn_no_me_gusta);
         }
-        for (int i = 0; i < Lista.size(); i++) {
-            if(Lista.get(i).equals(resIDStr))
-            {
-                estaEnLista = true;
-                btn_Me_gusta.setText(R.string.btn_no_me_gusta);
-                i = Lista.size();
-            }
-            else
-            {
-                btn_Me_gusta.setText(R.string.btn_me_gusta);
-                estaEnLista = false;
-            }
+        else
+        {
+            btn_Me_gusta.setText(R.string.btn_me_gusta);
+            estaEnLista = false;
         }
     }
     private void ConsultarCarrito()
     {
-        Cursor cursor = conncc.GetProductosCarrito();
-        ArrayList<String> Carrito= new ArrayList<String>();
-        while (cursor.moveToNext())
+        Cursor cursor = conncc.GetProductoCarrito(resIDStr);
+        if(cursor.moveToFirst())
         {
-            Carrito.add(cursor.getString(1));
+            String productoLike = cursor.getString(0);
+            estaEnCarrito = true;
+            btn_Carrito.setText(R.string.btn_no_me_gusta);
         }
-        for (int i = 0; i < Carrito.size(); i++) {
-            if(Carrito.get(i).equals(resIDStr))
-            {
-                estaEnCarrito = true;
-                btn_Carrito.setText(R.string.btn_no_comprar);
-                i = Carrito.size();
-            }
-            else
-            {
-                btn_Carrito.setText(R.string.btn_comprar);
-                estaEnCarrito = false;
-            }
+        else
+        {
+            btn_Carrito.setText(R.string.btn_me_gusta);
+            estaEnCarrito = false;
         }
     }
 

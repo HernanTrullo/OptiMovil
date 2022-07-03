@@ -35,6 +35,16 @@ public class CarritoCompraHelper extends SQLiteOpenHelper {
         contentValues.put(Campo_foto,fotoID);
         db.insert(Tabla_Carrito,null,contentValues);
     }
+    public Cursor GetProductoCarrito(String fotoID)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {Campo_foto};
+        String selection = Campo_foto + " LIKE ?";
+        String[] selectionArgs = { fotoID};
+        Cursor cursor = db.query(Tabla_Carrito,projection,selection,selectionArgs,null,null,null);
+        return cursor;
+    }
     public Cursor GetProductosCarrito()
     {
         SQLiteDatabase db = this.getReadableDatabase();
