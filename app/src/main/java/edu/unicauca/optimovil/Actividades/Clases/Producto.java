@@ -10,6 +10,14 @@ public class Producto {
         this.descripcion = descripcion;
         this.foto = foto;
     }
+    public Producto(){
+
+    }
+
+    public Producto(int imagen_prueba) {
+        this.foto = imagen_prueba;
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -33,5 +41,10 @@ public class Producto {
 
     public void setFoto(int foto) {
         this.foto = foto;
+    }
+
+
+    public Producto getTask() {
+        return this;
     }
 }

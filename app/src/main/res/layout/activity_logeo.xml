@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Logeo">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_logeo"
+        android:textColor="@color/letters_colors"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/txt_email"
         android:layout_width="match_parent"
@@ -38,7 +50,9 @@
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:backgroundTint="@color/white"
         android:text="@string/btn_logeo"
+        android:textColor="@color/letters_colors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.864"
         app:layout_constraintStart_toStartOf="parent"

@@ -13,4 +13,11 @@
     <string name="txt_hinst_password">Contraeña</string>
     <string name="btn_logeo">Ingresar</string>
     <string name="txt_mensaje_error_logeo">Error! usuario o contraseña incorrectos</string>
+    <string name="url">http://10.0.2.2:8080/tasks.json</string>
+    <string name="url2">http://192.168.0.100:8080/task.json</string>
+    <string name="url3">http://192.168.170.1:8080/task.json</string>
+    <string name="url4">http://127.0.0.1:8080/task.json</string>
+    <string name="txt_btn_logOut">Cerrar Sesión</string>
+    <string name="txt_sesion_cerrada">Sesión Cerrada</string>
+    <string name="txt_bienvenida">Bienvenido</string>
 </resources>
