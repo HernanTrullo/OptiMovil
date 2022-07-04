@@ -18,6 +18,9 @@
             android:name=".Logeo"
             android:exported="false" />
         <activity
+            android:name=".Actividades.VentanaCarrito"
+            android:exported="false" />
+        <activity
             android:name=".Actividades.VentanaProductosMeGusta"
             android:exported="false" />
         <activity

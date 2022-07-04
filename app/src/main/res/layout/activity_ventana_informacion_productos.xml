@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Actividades.VentanaInformacionProductos">
+    <ImageButton
+        android:id="@+id/CarritoCompra"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_btn_shopping_cart_24" />
 
     <FrameLayout
         android:id="@+id/layout_fragment_btn"
@@ -26,6 +35,7 @@
             android:id="@+id/NombreProductoInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
             android:layout_gravity="center"
             android:text="Nombre del producto"
             android:textSize="25dp"
@@ -46,21 +56,23 @@
 
                 <ImageView
                     android:id="@+id/imagen_del_producto"
-                    android:layout_width="144dp"
-                    android:layout_height="144dp"
                     android:layout_marginStart="16dp"
+                    android:layout_width="192dp"
+                    android:layout_height="192dp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayout"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
+
+                    android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imagen_del_producto"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
@@ -75,17 +87,22 @@
 
                     <Button
                         android:id="@+id/Me_Gusta"
-                        android:layout_width="wrap_content"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Me gusta" />
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/letters_colors"
+                        android:text="@string/btn_me_gusta"  />
+
 
                     <Button
                         android:id="@+id/Comprar"
-                        android:layout_width="wrap_content"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Añadir a carrito" />
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/letters_colors"
+                        android:text="@string/btn_comprar" />
                 </LinearLayout>
 
 
@@ -99,6 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:text="Este producto presenta"
             android:textSize="20dp" />
 

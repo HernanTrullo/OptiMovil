@@ -20,4 +20,19 @@
     <string name="txt_btn_logOut">Cerrar Sesión</string>
     <string name="txt_sesion_cerrada">Sesión Cerrada</string>
     <string name="txt_bienvenida">Bienvenido</string>
+=======
+    <string name="btn_me_gusta">Añadir me gusta</string>
+    <string name="btn_comprar">Añadir al carro</string>
+    <string name="lema_app">¡Vida para tus ojo!</string>
+    <string name="lb_btn_clientes">Cliente</string>
+    <string name="lb_btn_nino">Niños</string>
+    <string name="lb_btn_mujeres">Mujeres</string>
+    <string name="lb_btn_hombres">Hombres</string>
+    <string name="lb_btn_colecciones">Colecciones</string>
+    <string name="lb_btn_ubicacion">Ubicación</string>
+    <string name="lb_btn_citas">Optometría</string>
+    <string name="lb_btn_wapp">Whatsapp</string>
+    <string name="btn_no_me_gusta">Remover me gusta</string>
+    <string name="btn_no_comprar">Remover de carrito</string>
+>>>>>>> InformacionProducto
 </resources>

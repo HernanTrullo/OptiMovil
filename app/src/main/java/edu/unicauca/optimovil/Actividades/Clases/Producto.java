@@ -4,11 +4,13 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private int foto;
+    private int IDProducto;
 
-    public Producto(String nombre, String descripcion, int foto) {
+    public Producto(String nombre, String descripcion, int foto, int ID) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.foto = foto;
+        this.IDProducto = ID;
     }
     public Producto(){
 
@@ -46,5 +48,13 @@ public class Producto {
 
     public Producto getTask() {
         return this;
+    }
+    public int getIDProducto()
+    {
+        return IDProducto;
+    }
+    public void setIDProducto(int IDProducto)
+        {
+        this.IDProducto = IDProducto;
     }
 }

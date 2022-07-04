@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.Objects;
 import java.util.Timer;
@@ -22,6 +23,8 @@ public class Splash extends Activity {
     private ProgressBar spinner;
     private DbCLienteHelper dbCLienteHelper;
     private ClienteStrings cS;
+    private TextView NombreEmpresa;
+    private TextView lema;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,11 @@ public class Splash extends Activity {
                     String [] types2 = {"Hernan", "Dario", "Trullo", "Muñoz", "trullodario@unicauca.edu.co","1007587458", "no" };
                     dbCLienteHelper.insertCliente(db, types);
                     dbCLienteHelper.insertCliente(db, types2);*/
+        NombreEmpresa = findViewById(R.id.Nombre_aplicacion);
+        lema = findViewById(R.id.Lema_aplicacion);
+        NombreEmpresa.setText("Optivisión del norte");
+        lema.setText(R.string.lema_app);
+        lema.setEnabled(true);
 
             // Revisar si el usuario estpa logeado
             Cursor cursor = dbCLienteHelper.isLogeado(db);

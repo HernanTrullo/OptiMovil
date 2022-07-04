@@ -22,7 +22,7 @@ public class VentanaPrincipal extends AppCompatActivity {
 
     private boolean esLog = false;
 
-    private ImageButton  btiCliente,btiAccesorios, btiNinos, btiColecciones;
+    private ImageButton  btiCliente,btiHombre,btiMujer, btiNinos, btiColecciones;
 
 
 
@@ -38,8 +38,11 @@ public class VentanaPrincipal extends AppCompatActivity {
         // Inicialización de los elementos de la actividad
         btiCliente = findViewById(R.id.bti_cliente);
         btiColecciones = findViewById(R.id.bti_colecciones);
-        btiAccesorios = findViewById(R.id.bti_kids);
-        btiNinos = findViewById(R.id.bti_linea_hombre);
+        //btiAccesorios = findViewById(R.id.bti_kids);
+        //btiNinos = findViewById(R.id.bti_linea_hombre);
+        btiHombre = findViewById(R.id.bti_linea_hombre);
+        btiMujer = findViewById(R.id.bti_linea_mujer);
+        btiNinos = findViewById(R.id.bti_kids);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -60,8 +63,10 @@ public class VentanaPrincipal extends AppCompatActivity {
                     intent.putExtra(EXTRA_MENSAJE_CLIENTES, true);
                     startActivity(intent);
                 }
-
-
+                Intent intent = new Intent(VentanaPrincipal.this, VentanaClientes.class);
+                String mensaje = "Clientes";
+                intent.putExtra("Mensaje", mensaje);
+                startActivity(intent);
             }
         });
         btiNinos.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +75,7 @@ public class VentanaPrincipal extends AppCompatActivity {
                 Intent intent = new Intent(VentanaPrincipal.this, VentanaProducto.class);
                 String mensaje = "Niños";
                 intent.putExtra(EXTRA_MENSAJE_PRO, mensaje);
+                intent.putExtra("Mensaje", mensaje);
                 startActivity(intent);
             }
         });
@@ -79,15 +85,25 @@ public class VentanaPrincipal extends AppCompatActivity {
                 Intent intent = new Intent(VentanaPrincipal.this, VentanaProducto.class);
                 String mensaje = "Colecciones";
                 intent.putExtra(EXTRA_MENSAJE_PRO, mensaje);
+                intent.putExtra("Mensaje", mensaje);
                 startActivity(intent);
             }
         });
-        btiAccesorios.setOnClickListener(new View.OnClickListener() {
+        btiHombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VentanaPrincipal.this, VentanaProducto.class);
-                String mensaje = "Accesorios";
-                intent.putExtra(EXTRA_MENSAJE_PRO, mensaje);
+                String mensaje = "Hombres";
+                intent.putExtra("Mensaje", mensaje);
+                startActivity(intent);
+            }
+        });
+        btiMujer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VentanaPrincipal.this, VentanaProducto.class);
+                String mensaje = "Mujeres";
+                intent.putExtra("Mensaje", mensaje);
                 startActivity(intent);
             }
         });

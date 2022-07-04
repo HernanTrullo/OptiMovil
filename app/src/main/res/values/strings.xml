@@ -13,7 +13,6 @@
     <string name="btn_logeo">Login</string>
     <string name="txt_hinst_usuario">E-mail</string>
     <string name="txt_hinst_password">Password</string>
-    <string name="nombre_cliente">name_customer</string>
     <string name="txt_mensaje_error_logeo">Error! password or user incorrect</string>
     <string name="url">http://10.0.2.2:8080/task.json</string>
     <string name="url2">http://192.168.0.100:8080/task.json</string>
@@ -23,4 +22,18 @@
     <string name="txt_sesion_cerrada">Closed sesion</string>
     <string name="txt_bienvenida">Welcome</string>
 
+    <string name="nombre_cliente">Customer\'s name</string>
+    <string name="btn_me_gusta">Add Like</string>
+    <string name="btn_comprar">Add to car</string>
+    <string name="lema_app">Life for your eyes!</string>
+    <string name="lb_btn_clientes">Customer</string>
+    <string name="lb_btn_nino">Kids</string>
+    <string name="lb_btn_mujeres">Women</string>
+    <string name="lb_btn_hombres">Men</string>
+    <string name="lb_btn_colecciones">Colections</string>
+    <string name="lb_btn_ubicacion">Location</string>
+    <string name="lb_btn_citas">"Optometry "</string>
+    <string name="lb_btn_wapp">Whatsapp</string>
+    <string name="btn_no_me_gusta">Remove like</string>
+    <string name="btn_no_comprar">Remove from car</string>
 </resources>

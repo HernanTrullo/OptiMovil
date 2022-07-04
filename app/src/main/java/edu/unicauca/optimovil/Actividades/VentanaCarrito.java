@@ -11,25 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import edu.unicauca.optimovil.Actividades.BD.MeGustaBDHelper;
+import edu.unicauca.optimovil.Actividades.BD.CarritoCompraHelper;
 import edu.unicauca.optimovil.Actividades.Clases.AdaptadorProducto;
 import edu.unicauca.optimovil.Actividades.Clases.Producto;
 import edu.unicauca.optimovil.R;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
 
-public class VentanaProductosMeGusta extends AppCompatActivity {
+public class VentanaCarrito extends AppCompatActivity {
 
     ArrayList<Producto> listaProductos;
     RecyclerView recyclerProductos;
-    MeGustaBDHelper conn;
+    CarritoCompraHelper conn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ventana_productos_megusta);
-        Intent intent = getIntent();
-        String message = intent.getStringExtra("Mensaje");
-        conn = new MeGustaBDHelper(this);
-        Cursor cursor = conn.GetProductosMeGusta();
+        setContentView(R.layout.activity_ventana_carrito);
+        conn = new CarritoCompraHelper(this);
+        Cursor cursor = conn.GetProductosCarrito();
         ArrayList<String> Lista= new ArrayList<String>();
         while (cursor.moveToNext())
         {
@@ -39,7 +37,7 @@ public class VentanaProductosMeGusta extends AppCompatActivity {
         recyclerProductos = findViewById(R.id.RecyclerViewProductos);
         recyclerProductos.setLayoutManager(new LinearLayoutManager(this));
         LlenarProductos(Lista);
-        AdaptadorProducto adapter = new AdaptadorProducto(listaProductos,VentanaProductosMeGusta.this);
+        AdaptadorProducto adapter = new AdaptadorProducto(listaProductos, VentanaCarrito.this);
         recyclerProductos.setAdapter(adapter);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
