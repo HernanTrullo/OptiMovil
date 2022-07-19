@@ -118,42 +118,23 @@ public class VentanaProducto extends AppCompatActivity {
 
         switch (pantallaReferencia) {
             case "Colecciones":
-                listaProductos.add(new Producto("Montura azúl", "Esta montura es nueva", R.drawable.montura_azul, 1));
-                listaProductos.add(new Producto("Montura morada", "Esta montura es nueva", R.drawable.montura_morada, 2));
-                listaProductos.add(new Producto("Montura roja", "Esta montura es reparada", R.drawable.montura_roja, 3));
-                listaProductos.add(new Producto("Montura amarilla", "Esta montura es nueva", R.drawable.montura_amarilla, 4));
-                listaProductos.add(new Producto("Montura verde", "Esta montura es de vieja colección", R.drawable.montura_verde, 5));
-                listaProductos.add(new Producto("Montura plateada", "Esta montura es nueva", R.drawable.montura_plateada, 6));
+                getToken(14);
                 break;
             case "Niños":
-                listaProductos.add(new Producto("Montura Hello Kitty", "Esta montura es nueva", R.drawable.montura_hello_kitty, 7));
-                listaProductos.add(new Producto("Montura de silicona morada", "Esta montura es nueva", R.drawable.montura_silicina_morada, 8));
-                listaProductos.add(new Producto("Montura de oso", "Esta montura es reparada", R.drawable.montura_oso, 9));
-                listaProductos.add(new Producto("Montura sencilla", "Esta montura es nueva", R.drawable.montura_sencilla, 10));
-                break;
-            case "Clientes":
-                getToken();
+                getToken(4);
                 break;
             case "Mujeres":
-                getToken();
+                getToken(2);
                 break;
             case "Hombres":
-                listaProductos.add(new Producto("Montura sencilla negra", "Esta montura es nueva", R.drawable.montura_sencilla_hombre, 22));
-                listaProductos.add(new Producto("Montura plateada redonda", "Esta montura es nueva", R.drawable.montura_plateada_redonda, 23));
-                listaProductos.add(new Producto("Montura negra de marco completo", "Esta montura es reparada", R.drawable.montura_negra_completa, 24));
-                listaProductos.add(new Producto("Montura amarilla cuadrada", "Esta montura es nueva", R.drawable.montura_amarilla_cuadrada, 25));
+                getToken(1);
                 break;
             default:
-                listaProductos.add(new Producto("Montura azúl", "Esta montura es nueva", R.drawable.montura_azul, 1));
-                listaProductos.add(new Producto("Montura morada", "Esta montura es nueva", R.drawable.montura_morada, 2));
-                listaProductos.add(new Producto("Montura roja", "Esta montura es reparada", R.drawable.montura_roja, 3));
-                listaProductos.add(new Producto("Montura amarilla", "Esta montura es nueva", R.drawable.montura_amarilla, 4));
-                listaProductos.add(new Producto("Montura verde", "Esta montura es de vieja colección", R.drawable.montura_verde, 5));
-                listaProductos.add(new Producto("Montura plateada", "Esta montura es nueva", R.drawable.montura_plateada, 6));
+                getToken(2);
                 break;
         }
     }
-    public void getToken(){
+    public void getToken(int catergoria){
 
         Call<Response<Token>> call_token = ServicioApiToken.getAppServicio().obtenrerTokenAceso(Keys.secret);
         try {
@@ -164,7 +145,7 @@ public class VentanaProducto extends AppCompatActivity {
                         if (response.body() != null) {
                             if(response.body().getStatus().equals(1)){
                                 Keys.beaber_token=response.body().getData().getAccessToken();
-                                getProducts();
+                                getProducts(catergoria);
                                 Log.i("TOKEN_ACCESO", Keys.beaber_token);
                             }else{
                                 Log.e("TOKEN_ACCESO", "No se obtuvo algun tokken");
@@ -192,8 +173,8 @@ public class VentanaProducto extends AppCompatActivity {
         }
     }
 
-    private void getProducts() {
-        Call<Response<List<Product>>> call_products = ServicioApiProducts.getAppServicio().getProducts();
+    private void getProducts(int catergoria) {
+        Call<Response<List<Product>>> call_products = ServicioApiProducts.getAppServicio().getProductsFilters(catergoria);
         call_products.enqueue(new Callback<Response<List<Product>>>() {
             @Override
             public void onResponse(Call<Response<List<Product>>> call, retrofit2.Response<Response<List<Product>>> response) {
@@ -203,24 +184,7 @@ public class VentanaProducto extends AppCompatActivity {
                         if(listProducts.getStatus() == 1){
                             Gson gson = new Gson();
                             for (Product product: listProducts.getData()) {
-                                switch (product.getId())
-                                {
-                                    case 264:
-                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.estuche_clasico, product.getId()));
-                                        break;
-                                    case 124:
-                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.montura_amarilla, product.getId()));
-                                        break;
-                                    case 94:
-                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.montura_azul, product.getId()));
-                                        break;
-                                    case 1:
-                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.montura_roja, product.getId()));
-                                        break;
-                                    default:
-                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.montura_roja, product.getId()));
-                                        break;
-                                }
+                                listaProductos.add(new Producto(product.getName(), product.getDescription(), product.getImagePath(), product.getId()));
                             }
 
                             AdaptadorProducto adapter = new AdaptadorProducto(listaProductos,VentanaProducto.this);
@@ -236,4 +200,3 @@ public class VentanaProducto extends AppCompatActivity {
         });
     }
 }
-

@@ -3,10 +3,10 @@ package edu.unicauca.optimovil.Actividades.Clases;
 public class Producto {
     private String nombre;
     private String descripcion;
-    private int foto;
+    private String foto;
     private int IDProducto;
 
-    public Producto(String nombre, String descripcion, int foto, int ID) {
+    public Producto(String nombre, String descripcion, String foto, int ID) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.foto = foto;
@@ -16,7 +16,7 @@ public class Producto {
 
     }
 
-    public Producto(int imagen_prueba) {
+    public Producto(String imagen_prueba) {
         this.foto = imagen_prueba;
     }
 
@@ -37,11 +37,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public int getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

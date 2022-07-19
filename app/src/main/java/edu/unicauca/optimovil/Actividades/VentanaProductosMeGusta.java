@@ -51,7 +51,7 @@ public class VentanaProductosMeGusta extends AppCompatActivity {
     private void LlenarProductos(ArrayList<String> lista)
     {
         for (int i = 0; i < lista.size(); i++) {
-            listaProductos.add(new Producto("Montura azúl","Esta montura es nueva", Integer.parseInt(lista.get(i)),i+1));
+            listaProductos.add(new Producto("Montura azúl","Esta montura es nueva", lista.get(i),i+1));
         }
     }
 

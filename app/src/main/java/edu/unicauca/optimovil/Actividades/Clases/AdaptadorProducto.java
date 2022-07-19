@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import edu.unicauca.optimovil.Actividades.VentanaInformacionProductos;
@@ -42,14 +44,15 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
     public void onBindViewHolder(@NonNull ViewHolderProductos holder, int position) {
         holder.tvNombre.setText(listaProductos.get(position).getNombre());
         holder.tvDescripcion.setText(listaProductos.get(position).getDescripcion());
-        holder.ivFoto.setImageResource(listaProductos.get(position).getFoto());
-        int fotoProducto = listaProductos.get(position).getFoto();
+        Picasso.get().load(listaProductos.get(position).getFoto()).into(holder.ivFoto);
+        //holder.ivFoto.setImageResource(listaProductos.get(position).getFoto());
+        int idProducto = listaProductos.get(position).getIDProducto();
         holder.lloProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Pasa el contexto en el primer parametro
                 Intent intent = new Intent(holder.itemView.getContext(),VentanaInformacionProductos.class);
-                intent.putExtra("Imagen", fotoProducto);
+                intent.putExtra("Producto", idProducto);
                 mContext.startActivity(intent);
             }
         });
