@@ -10,6 +10,8 @@ public class Keys {
     @Expose
     public static String secret = "abf7755c8b07eee3c1e3bd578e2e5ec8";
     public static String beaber_token = "";
+    public static final String NAME_DATA_BASE = "optimovil.db";
+    public static final int DATABASE_VERSION = 2;
 
     public static String getSecret_key_app() {
         return secret;

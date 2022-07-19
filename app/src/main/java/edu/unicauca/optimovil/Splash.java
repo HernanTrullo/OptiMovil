@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -17,21 +17,26 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import edu.unicauca.optimovil.Actividades.VentanaLogin;
 import edu.unicauca.optimovil.Actividades.VentanaPrincipal;
 import edu.unicauca.optimovil.BaseDatosCLiente.Cliente;
 import edu.unicauca.optimovil.BaseDatosCLiente.ClienteStrings;
 import edu.unicauca.optimovil.BaseDatosCLiente.DbCLienteHelper;
+import edu.unicauca.optimovil.BaseDatosCLiente.DbCategoriesHelper;
+import edu.unicauca.optimovil.BaseDatosCLiente.DbClientsHelper;
+import edu.unicauca.optimovil.BaseDatosCLiente.DbProductsHelper;
+import edu.unicauca.optimovil.BaseDatosCLiente.DbTypesHelper;
 import edu.unicauca.optimovil.io.autencticacion_api.Keys;
 import edu.unicauca.optimovil.io.response.Category;
 import edu.unicauca.optimovil.io.response.Client;
 import edu.unicauca.optimovil.io.response.Product;
 import edu.unicauca.optimovil.io.response.Response;
+import edu.unicauca.optimovil.io.response.Token;
 import edu.unicauca.optimovil.io.response.Type;
 import edu.unicauca.optimovil.io.services.ServicioApiCategories;
 import edu.unicauca.optimovil.io.services.ServicioApiClients;
 import edu.unicauca.optimovil.io.services.ServicioApiProducts;
 import edu.unicauca.optimovil.io.services.ServicioApiToken;
-import edu.unicauca.optimovil.io.response.Token;
 import edu.unicauca.optimovil.io.services.ServicioApiTypes;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,27 +91,6 @@ public class Splash extends Activity {
             Toast.makeText(Splash.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-        boolean finalEsLogeado = esLogeado;
-
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                // incio: Crear base de datos
-                try {
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.d("TOKEN",e.getMessage());
-                }
-                Intent intent = new Intent(Splash.this, VentanaPrincipal.class);
-                intent.putExtra(VentanaPrincipal.EXTRA_MENSAJE_PRINCIP, finalEsLogeado);
-                startActivity(intent);
-                finish();
-            }
-        };
-
-        Timer timer = new Timer();
-        timer.schedule(timerTask, 5000);
-
     }
 
     private void getTypes() {
@@ -121,6 +105,9 @@ public class Splash extends Activity {
                             for (Type type: listTypes.getData()) {
                                 Log.i("TYPE", "type : "+gson.toJson(type));
                             }
+                            DbTypesHelper dbTypesHelper = new DbTypesHelper(Splash.this);
+                            dbTypesHelper.insertTypes(listTypes.getData());
+
                         }
                     }
                 }
@@ -146,10 +133,13 @@ public class Splash extends Activity {
                                 getTypes();
                                 getCategories();
                                 getProducts();
-                                login();
-                                Intent intent = new Intent(Splash.this, VentanaPrincipal.class);
-                                startActivity(intent);
+                                DbClientsHelper dbClientsHelper = new DbClientsHelper(Splash.this);
+                                Client cliente = dbClientsHelper.getFirstClient();
+                                    Intent intent = new Intent(Splash.this, VentanaPrincipal.class);
+                                    intent.putExtra(VentanaPrincipal.EXTRA_MENSAJE_PRINCIP, cliente != null);
+                                    startActivity(intent);
                                 Log.i("TOKEN_ACCESO", Keys.beaber_token);
+                                finish();
                             }else{
                                 Log.e("TOKEN_ACCESO", "No se obtuvo algun tokken");
                             }
@@ -176,33 +166,6 @@ public class Splash extends Activity {
         }
     }
 
-    private void login() {
-        Client c = new Client();
-        c.setEmail("carloschapid@unicauca.edu.co");
-        c.setPassword("12345678");
-
-        Call<Response<Client>> call_login = ServicioApiClients.getAppServicio().loginClient(c);
-        call_login.enqueue(new Callback<Response<Client>>() {
-            @Override
-            public void onResponse(Call<Response<Client>> call, retrofit2.Response<Response<Client>> response) {
-                if(response.isSuccessful()) {
-                    if (response.body() != null) {
-                        Response<Client> respuestaLogin = response.body();
-                        if(respuestaLogin.getStatus() == 1){
-                            Gson gson = new Gson();
-                                Log.d("CLIENTE", "cliente: "+gson.toJson(respuestaLogin.getData()));
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Response<Client>> call, Throwable t) {
-
-            }
-        });
-    }
-
     private void getProducts() {
         Call<Response<List<Product>>> call_products = ServicioApiProducts.getAppServicio().getProducts();
         call_products.enqueue(new Callback<Response<List<Product>>>() {
@@ -216,6 +179,8 @@ public class Splash extends Activity {
                             for (Product product: listProducts.getData()) {
                                 Log.i("Product", "product : "+gson.toJson(product));
                             }
+                            DbProductsHelper dbProductsHelper = new DbProductsHelper(Splash.this);
+                            dbProductsHelper.insertProducts(listProducts.getData());
                         }
                     }
 
@@ -241,6 +206,8 @@ public class Splash extends Activity {
                         for (Category category: listCategories.getData()) {
                             Log.i("Category", "category : "+gson.toJson(category));
                         }
+                        DbCategoriesHelper dbCategoriesHelper = new DbCategoriesHelper(Splash.this);
+                        dbCategoriesHelper.insertCategories(listCategories.getData());
                     }
                 }
             }
