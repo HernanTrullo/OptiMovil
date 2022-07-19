@@ -8,18 +8,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,6 +38,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,9 +46,18 @@ import edu.unicauca.optimovil.Actividades.Clases.AdaptadorProducto;
 import edu.unicauca.optimovil.Actividades.Clases.Producto;
 
 import edu.unicauca.optimovil.R;
+import edu.unicauca.optimovil.Splash;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
 
 import edu.unicauca.optimovil.fragments.BotonesFragment;
+import edu.unicauca.optimovil.io.autencticacion_api.Keys;
+import edu.unicauca.optimovil.io.response.Product;
+import edu.unicauca.optimovil.io.response.Response;
+import edu.unicauca.optimovil.io.response.Token;
+import edu.unicauca.optimovil.io.services.ServicioApiProducts;
+import edu.unicauca.optimovil.io.services.ServicioApiToken;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 //import edu.unicauca.optimovil.Splash;
 
@@ -96,155 +116,124 @@ public class VentanaProducto extends AppCompatActivity {
     private void llenarProductos(String pantallaReferencia)
     {
 
-        switch (pantallaReferencia)
-        {
+        switch (pantallaReferencia) {
             case "Colecciones":
-                listaProductos.add(new Producto("Montura azúl","Esta montura es nueva",R.drawable.montura_azul,1));
-                listaProductos.add(new Producto("Montura morada","Esta montura es nueva",R.drawable.montura_morada,2));
-                listaProductos.add(new Producto("Montura roja","Esta montura es reparada",R.drawable.montura_roja,3));
-                listaProductos.add(new Producto("Montura amarilla","Esta montura es nueva",R.drawable.montura_amarilla,4));
-                listaProductos.add(new Producto("Montura verde","Esta montura es de vieja colección",R.drawable.montura_verde,5));
-                listaProductos.add(new Producto("Montura plateada","Esta montura es nueva",R.drawable.montura_plateada,6));
+                listaProductos.add(new Producto("Montura azúl", "Esta montura es nueva", R.drawable.montura_azul, 1));
+                listaProductos.add(new Producto("Montura morada", "Esta montura es nueva", R.drawable.montura_morada, 2));
+                listaProductos.add(new Producto("Montura roja", "Esta montura es reparada", R.drawable.montura_roja, 3));
+                listaProductos.add(new Producto("Montura amarilla", "Esta montura es nueva", R.drawable.montura_amarilla, 4));
+                listaProductos.add(new Producto("Montura verde", "Esta montura es de vieja colección", R.drawable.montura_verde, 5));
+                listaProductos.add(new Producto("Montura plateada", "Esta montura es nueva", R.drawable.montura_plateada, 6));
                 break;
             case "Niños":
-                listaProductos.add(new Producto("Montura Hello Kitty","Esta montura es nueva",R.drawable.montura_hello_kitty,7));
-                listaProductos.add(new Producto("Montura de silicona morada","Esta montura es nueva",R.drawable.montura_silicina_morada,8));
-                listaProductos.add(new Producto("Montura de oso","Esta montura es reparada",R.drawable.montura_oso,9));
-                listaProductos.add(new Producto("Montura sencilla","Esta montura es nueva",R.drawable.montura_sencilla,10));
+                listaProductos.add(new Producto("Montura Hello Kitty", "Esta montura es nueva", R.drawable.montura_hello_kitty, 7));
+                listaProductos.add(new Producto("Montura de silicona morada", "Esta montura es nueva", R.drawable.montura_silicina_morada, 8));
+                listaProductos.add(new Producto("Montura de oso", "Esta montura es reparada", R.drawable.montura_oso, 9));
+                listaProductos.add(new Producto("Montura sencilla", "Esta montura es nueva", R.drawable.montura_sencilla, 10));
                 break;
             case "Clientes":
-                listaProductos.add(new Producto("Retenedores de silicona","Esta montura es nueva",R.drawable.retenedores_silicona,11));
-                listaProductos.add(new Producto("Sujetador para gafas","Esta montura es nueva",R.drawable.sujetador,12));
-                listaProductos.add(new Producto("Estuche plegable","Esta montura es reparada",R.drawable.estuche_plegable,13));
-                listaProductos.add(new Producto("Estuche clásico","Esta montura es nueva",R.drawable.estuche_clasico,14));
-                listaProductos.add(new Producto("Liquido de limpieza para lentes","Esta montura es de vieja colección",R.drawable.limpiador,15));
-                listaProductos.add(new Producto("Goma decorativa para niño","Esta montura es nueva",R.drawable.goma_decorativa,16));
-                listaProductos.add(new Producto("Cadena dorada para gafas","Esta montura es nueva",R.drawable.cadena_dorada,17));
+                getToken();
                 break;
             case "Mujeres":
-                listaProductos.add(new Producto("Montura roja","Esta montura es nueva",R.drawable.montura_roja,3));
-                listaProductos.add(new Producto("Montura morada","Esta montura es nueva",R.drawable.montura_morada,2));
-                listaProductos.add(new Producto("Montura plateada","Esta montura es reparada",R.drawable.montura_plateada,6));
-                listaProductos.add(new Producto("Montura vintage","Esta montura es nueva",R.drawable.montura_vintage,18));
-                listaProductos.add(new Producto("Montura transparente redonda","Esta montura es de vieja colección",R.drawable.montura_transparente_redonda,19));
-                listaProductos.add(new Producto("Montura rosada redonda","Esta montura es nueva",R.drawable.montura_rosa_redonda,20));
-                listaProductos.add(new Producto("Montura dorada redonda","Esta montura es nueva",R.drawable.montura_dorada,21));
+                getToken();
                 break;
             case "Hombres":
-                listaProductos.add(new Producto("Montura sencilla negra","Esta montura es nueva",R.drawable.montura_sencilla_hombre,22));
-                listaProductos.add(new Producto("Montura plateada redonda","Esta montura es nueva",R.drawable.montura_plateada_redonda,23));
-                listaProductos.add(new Producto("Montura negra de marco completo","Esta montura es reparada",R.drawable.montura_negra_completa,24));
-                listaProductos.add(new Producto("Montura amarilla cuadrada","Esta montura es nueva",R.drawable.montura_amarilla_cuadrada,25));
+                listaProductos.add(new Producto("Montura sencilla negra", "Esta montura es nueva", R.drawable.montura_sencilla_hombre, 22));
+                listaProductos.add(new Producto("Montura plateada redonda", "Esta montura es nueva", R.drawable.montura_plateada_redonda, 23));
+                listaProductos.add(new Producto("Montura negra de marco completo", "Esta montura es reparada", R.drawable.montura_negra_completa, 24));
+                listaProductos.add(new Producto("Montura amarilla cuadrada", "Esta montura es nueva", R.drawable.montura_amarilla_cuadrada, 25));
                 break;
             default:
-                listaProductos.add(new Producto("Montura azúl","Esta montura es nueva",R.drawable.montura_azul,1));
-                listaProductos.add(new Producto("Montura morada","Esta montura es nueva",R.drawable.montura_morada,2));
-                listaProductos.add(new Producto("Montura roja","Esta montura es reparada",R.drawable.montura_roja,3));
-                listaProductos.add(new Producto("Montura amarilla","Esta montura es nueva",R.drawable.montura_amarilla,4));
-                listaProductos.add(new Producto("Montura verde","Esta montura es de vieja colección",R.drawable.montura_verde,5));
-                listaProductos.add(new Producto("Montura plateada","Esta montura es nueva",R.drawable.montura_plateada,6));
+                listaProductos.add(new Producto("Montura azúl", "Esta montura es nueva", R.drawable.montura_azul, 1));
+                listaProductos.add(new Producto("Montura morada", "Esta montura es nueva", R.drawable.montura_morada, 2));
+                listaProductos.add(new Producto("Montura roja", "Esta montura es reparada", R.drawable.montura_roja, 3));
+                listaProductos.add(new Producto("Montura amarilla", "Esta montura es nueva", R.drawable.montura_amarilla, 4));
+                listaProductos.add(new Producto("Montura verde", "Esta montura es de vieja colección", R.drawable.montura_verde, 5));
+                listaProductos.add(new Producto("Montura plateada", "Esta montura es nueva", R.drawable.montura_plateada, 6));
                 break;
         }
-
-
     }
+    public void getToken(){
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //loadTasks();
-
-    }
-
-    private void loadTasks() {
-
-        class LoadTasks extends AsyncTask<Void, Void, Void> {
-
-            private static final String TAG = "ToDo";
-            private ArrayList<Producto> jsonTodoItems;
-
-            @Override
-            protected Void doInBackground(Void... voids) {
-
-                ArrayList<String> result = new ArrayList<>(0);
-                String myFeed = getApplication().getString(R.string.url);
-                try {
-                    URL url = new URL(myFeed);
-                    // Create a new HTTP URL connection
-                    URLConnection connection = url.openConnection();
-                    HttpURLConnection httpConnection = (HttpURLConnection) connection;
-                    int responseCode = httpConnection.getResponseCode();
-                    if (responseCode == HttpURLConnection.HTTP_OK) {
-
-                        InputStream in = httpConnection.getInputStream();
-                        jsonTodoItems = new ArrayList<>();
-                        //Parse the answer in JSON format
-                        parseJSON(in);
-                    }
-                    httpConnection.disconnect();
-                } catch (MalformedURLException e) {
-
-                    Log.e(TAG, "Malformed URL Exception.", e);
-
-                } catch (IOException e) {
-                    Log.e(TAG, "IO Exception.", e);
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                //Update the tasks list after downloading the content from Internet
-                listaProductos .clear();
-                for (int i = 0; i < jsonTodoItems.size(); i++) {
-                    listaProductos.add(jsonTodoItems.get(i).getTask());
-                }
-                AdaptadorProducto adapter = new AdaptadorProducto(listaProductos,getBaseContext());
-                recyclerProductos.setAdapter(adapter);
-            }
-
-            //Method to parse the tasks.json file available in th server
-            private void parseJSON(InputStream in) throws IOException {
-               // Create a new Json Reader to parse the input.
-                JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
-                try {
-                    //JSON file starts with an array
-                    reader.beginArray();
-                    while (reader.hasNext()) {
-                        Producto item = new Producto();
-                        //Parse a specific object inside the array
-                        reader.beginObject();
-                        while (reader.hasNext()) {
-                            String value = reader.nextName();
-                            //It gets the property value and store it on the correct property of ToDoItem object
-                            switch (value) {
-                                case "nombre":
-                                    item.setNombre(reader.nextString());
-                                    break;
-                                case "id":
-                                    item.setFoto(R.drawable.imagen_prueba);
-                                    break;
-                                case "descripcion":
-                                    item.setDescripcion(reader.nextString());
-                                default:
-                                    reader.skipValue();
-                                    break;
+        Call<Response<Token>> call_token = ServicioApiToken.getAppServicio().obtenrerTokenAceso(Keys.secret);
+        try {
+            call_token.enqueue(new Callback<Response<Token>>() {
+                @Override
+                public void onResponse(Call<Response<Token>> call, retrofit2.Response<Response<Token>> response) {
+                    if(response.isSuccessful()){
+                        if (response.body() != null) {
+                            if(response.body().getStatus().equals(1)){
+                                Keys.beaber_token=response.body().getData().getAccessToken();
+                                getProducts();
+                                Log.i("TOKEN_ACCESO", Keys.beaber_token);
+                            }else{
+                                Log.e("TOKEN_ACCESO", "No se obtuvo algun tokken");
                             }
                         }
-                        reader.endObject();
-                        jsonTodoItems.add(item);
                     }
-                    reader.endArray();
-                } finally {
-                    reader.close();
                 }
-            }
 
+                @Override
+                public void onFailure(Call<Response<Token>> call, Throwable t) {
+                    Toast.makeText(VentanaProducto.this, "A ocurrido un error: "+t.getMessage(), Toast.LENGTH_LONG).show();
+                    (new Timer()).schedule(null, Toast.LENGTH_LONG+1);
+                    moveTaskToBack(true);
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    System.exit(1);
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("TOKEN",e.getMessage());
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
         }
-
-        LoadTasks loadTasks = new LoadTasks();
-        loadTasks.execute();
     }
 
+    private void getProducts() {
+        Call<Response<List<Product>>> call_products = ServicioApiProducts.getAppServicio().getProducts();
+        call_products.enqueue(new Callback<Response<List<Product>>>() {
+            @Override
+            public void onResponse(Call<Response<List<Product>>> call, retrofit2.Response<Response<List<Product>>> response) {
+                if(response.isSuccessful()){
+                    if(response.body() != null){
+                        Response<List<Product>> listProducts = response.body();
+                        if(listProducts.getStatus() == 1){
+                            Gson gson = new Gson();
+                            for (Product product: listProducts.getData()) {
+                                switch (product.getId())
+                                {
+                                    case 264:
+                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.estuche_clasico, product.getId()));
+                                        break;
+                                    case 124:
+                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.montura_amarilla, product.getId()));
+                                        break;
+                                    case 94:
+                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.montura_azul, product.getId()));
+                                        break;
+                                    case 1:
+                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.montura_roja, product.getId()));
+                                        break;
+                                    default:
+                                        listaProductos.add(new Producto(product.getName(), product.getDescription(),R.drawable.montura_roja, product.getId()));
+                                        break;
+                                }
+                            }
+
+                            AdaptadorProducto adapter = new AdaptadorProducto(listaProductos,VentanaProducto.this);
+                            recyclerProductos.setAdapter(adapter);
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<Response<List<Product>>> call, Throwable t) {
+
+            }
+        });
+    }
 }
+
