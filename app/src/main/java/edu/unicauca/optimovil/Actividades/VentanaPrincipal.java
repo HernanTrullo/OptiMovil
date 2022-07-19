@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import edu.unicauca.optimovil.Logeo;
 import edu.unicauca.optimovil.R;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
+import edu.unicauca.optimovil.io.autencticacion_api.Keys;
 
 public class VentanaPrincipal extends AppCompatActivity {
     public static final String EXTRA_MENSAJE_PRO = "edu.unicauca.optimovil.PRODUCTO";
@@ -32,6 +34,7 @@ public class VentanaPrincipal extends AppCompatActivity {
         setContentView(R.layout.ventana_principal);
         // Se capura si el usuario ya esta logeado
 
+        Log.d("TOKKEN_NUEVO: ",Keys.beaber_token);
         Intent intentPrincipal = getIntent();
         esLog = intentPrincipal.getBooleanExtra(EXTRA_MENSAJE_PRINCIP, false);
 
