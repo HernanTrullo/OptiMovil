@@ -17,5 +17,5 @@ public interface ProductsInterface {
     Call<Response<List<Product>>> getProductsFilters( @Query("category_id") int categoryId );
 
     @GET("products")
-    Call<Response<List<Product>>> getProductsFiltersID( @Query("id") int id);
+    Call<Response<List<Product>>> getProductsByID( @Query("name") String name );
 }

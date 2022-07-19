@@ -2,7 +2,6 @@ package edu.unicauca.optimovil.Actividades;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
@@ -14,24 +13,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import android.content.Intent;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
 import edu.unicauca.optimovil.Actividades.BD.CarritoCompraHelper;
 import edu.unicauca.optimovil.Actividades.BD.MeGustaBDHelper;
-import edu.unicauca.optimovil.Actividades.Clases.AdaptadorProducto;
-import edu.unicauca.optimovil.Actividades.Clases.Producto;
 import edu.unicauca.optimovil.R;
 import edu.unicauca.optimovil.fragments.BotonesFragment;
 import edu.unicauca.optimovil.io.autencticacion_api.Keys;
@@ -48,13 +39,13 @@ public class VentanaInformacionProductos extends AppCompatActivity{
     ImageView iv_Producto;
     TextView descripcion;
     TextView Nombre;
-    TextView Precio;
+    TextView PrecioP;
     MeGustaBDHelper conn;
     CarritoCompraHelper conncc;
     Button btn_Me_gusta;
     Button btn_Carrito;
     ImageButton ibtn_Carrito;
-    int resId;
+    String resId;
     String resIDStr;
     boolean estaEnLista,estaEnCarrito;
     @Override
@@ -67,12 +58,12 @@ public class VentanaInformacionProductos extends AppCompatActivity{
         btn_Carrito = findViewById(R.id.Comprar);
         ibtn_Carrito = findViewById(R.id.CarritoCompra);
         Nombre = findViewById(R.id.NombreProductoInfo);
-        Precio = findViewById(R.id.Precio);
+        PrecioP = findViewById(R.id.PrecioP);
         descripcion = findViewById(R.id.Informacion_Producto);
         if (bundle != null) {
-            resId = bundle.getInt("Id");
+            resId = bundle.getString("Producto");
             Log.i("a","b "+resId);
-            //getToken(resId);
+            getToken(resId);
             //iv_Producto.setImageResource(resId);
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -81,7 +72,7 @@ public class VentanaInformacionProductos extends AppCompatActivity{
                 .commit();
         conn = new MeGustaBDHelper(this);
         conncc = new CarritoCompraHelper(this);
-        resIDStr = String.valueOf(resId);
+        //resIDStr = String.valueOf(resId);
         ConsultarMeGusta();
         ConsultarCarrito();
         ibtn_Carrito.setOnClickListener(new View.OnClickListener() {
@@ -96,12 +87,12 @@ public class VentanaInformacionProductos extends AppCompatActivity{
                 ConsultarMeGusta();
                 if(estaEnLista==false)
                 {
-                    conn.insertarProductoMeGusta(resIDStr);
+                    conn.insertarProductoMeGusta(resId);
                     btn_Me_gusta.setText(R.string.btn_no_me_gusta);
                 }
                 if(estaEnLista==true)
                 {
-                    conn.BorrarProductoMeGusta(resIDStr);
+                    conn.BorrarProductoMeGusta(resId);
                     btn_Me_gusta.setText(R.string.btn_me_gusta);
                 }
             }
@@ -111,12 +102,12 @@ public class VentanaInformacionProductos extends AppCompatActivity{
                 ConsultarCarrito();
                 if(estaEnCarrito==false)
                 {
-                    conncc.insertarProductoaCarrito(resIDStr);
+                    conncc.insertarProductoaCarrito(resId);
                     btn_Carrito.setText(R.string.btn_no_comprar);
                 }
                 if(estaEnCarrito==true)
                 {
-                    conncc.BorrarProductoCarrito(resIDStr);
+                    conncc.BorrarProductoCarrito(resId);
                     btn_Carrito.setText(R.string.btn_comprar);
                 }
 
@@ -126,7 +117,7 @@ public class VentanaInformacionProductos extends AppCompatActivity{
 
     private void ConsultarMeGusta()
     {
-        Cursor cursor = conn.GetProductoMeGusta(resIDStr);
+        Cursor cursor = conn.GetProductoMeGusta(resId);
         if(cursor.moveToFirst())
         {
             String productoLike = cursor.getString(0);
@@ -141,7 +132,7 @@ public class VentanaInformacionProductos extends AppCompatActivity{
     }
     private void ConsultarCarrito()
     {
-        Cursor cursor = conncc.GetProductoCarrito(resIDStr);
+        Cursor cursor = conncc.GetProductoCarrito(resId);
         if(cursor.moveToFirst())
         {
             String productoLike = cursor.getString(0);
@@ -155,7 +146,7 @@ public class VentanaInformacionProductos extends AppCompatActivity{
         }
     }
 
-    public void getToken(int id){
+    public void getToken(String name){
 
         Call<Response<Token>> call_token = ServicioApiToken.getAppServicio().obtenrerTokenAceso(Keys.secret);
         try {
@@ -166,7 +157,7 @@ public class VentanaInformacionProductos extends AppCompatActivity{
                         if (response.body() != null) {
                             if(response.body().getStatus().equals(1)){
                                 Keys.beaber_token=response.body().getData().getAccessToken();
-                                getProducts(id);
+                                getProduct(name);
                                 Log.i("TOKEN_ACCESO", Keys.beaber_token);
                             }else{
                                 Log.e("TOKEN_ACCESO", "No se obtuvo algun tokken");
@@ -194,8 +185,8 @@ public class VentanaInformacionProductos extends AppCompatActivity{
         }
     }
 
-    private void getProducts(int id) {
-        Call<Response<List<Product>>> call_products = ServicioApiProducts.getAppServicio().getProductsFiltersID(id);
+    private void getProduct(String name) {
+        Call<Response<List<Product>>> call_products = ServicioApiProducts.getAppServicio().getProductsByID(name);
         call_products.enqueue(new Callback<Response<List<Product>>>() {
             @Override
             public void onResponse(Call<Response<List<Product>>> call, retrofit2.Response<Response<List<Product>>> response) {
@@ -203,12 +194,12 @@ public class VentanaInformacionProductos extends AppCompatActivity{
                     if(response.body() != null){
                         Response<List<Product>> listProducts = response.body();
                         if(listProducts.getStatus() == 1){
-                            Gson gson = new Gson();
                             for (Product product: listProducts.getData()) {
+                                Log.i("Producto","El id es "+product.getId());
                                 Picasso.get().load(product.getImagePath()).into(iv_Producto);
                                 Nombre.setText(product.getName());
                                 descripcion.setText(product.getDescription());
-                                Precio.setText(product.getPrice());
+                                PrecioP.setText(String.valueOf(product.getPrice()));
                             }
                         }
                     }
@@ -216,7 +207,7 @@ public class VentanaInformacionProductos extends AppCompatActivity{
             }
             @Override
             public void onFailure(Call<Response<List<Product>>> call, Throwable t) {
-
+                Log.i("Producto","Error");
             }
         });
     }

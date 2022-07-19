@@ -46,7 +46,7 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
         holder.tvDescripcion.setText(listaProductos.get(position).getDescripcion());
         Picasso.get().load(listaProductos.get(position).getFoto()).into(holder.ivFoto);
         //holder.ivFoto.setImageResource(listaProductos.get(position).getFoto());
-        int idProducto = listaProductos.get(position).getIDProducto();
+        String idProducto = listaProductos.get(position).getNombre();
         holder.lloProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

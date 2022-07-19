@@ -112,7 +112,6 @@ public class VentanaProducto extends AppCompatActivity {
 
     }
 
-
     private void llenarProductos(String pantallaReferencia)
     {
 
@@ -186,7 +185,6 @@ public class VentanaProducto extends AppCompatActivity {
                             for (Product product: listProducts.getData()) {
                                 listaProductos.add(new Producto(product.getName(), product.getDescription(), product.getImagePath(), product.getId()));
                             }
-
                             AdaptadorProducto adapter = new AdaptadorProducto(listaProductos,VentanaProducto.this);
                             recyclerProductos.setAdapter(adapter);
                         }
@@ -199,4 +197,5 @@ public class VentanaProducto extends AppCompatActivity {
             }
         });
     }
+
 }
